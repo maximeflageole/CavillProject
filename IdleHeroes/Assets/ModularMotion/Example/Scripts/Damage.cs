@@ -7,9 +7,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-#if MODULARMOTION
 using ModularMotion;
 using Motion = ModularMotion.Core.Motion;
+using ModularMotion.Core;
 
 public class Damage : MonoBehaviour
 {
@@ -67,5 +67,3 @@ public class Damage : MonoBehaviour
         AnimatedBar = Motion.Value(TargetUI.fillAmount, 1, DamageAnimation, 2, 0, Motion.EaseInStrong, Motion.LoopType.None);
     }
 }
-
-#endif
