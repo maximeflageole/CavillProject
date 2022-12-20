@@ -14,8 +14,8 @@ public class LocationPanel : MonoBehaviour
     [SerializeField]
     protected Image m_enemyImage;
 
-    public IdleUnit Enemy { get; protected set; }
-    public IdleUnit Hero { get; protected set; }
+    public AutoBattlerUnit Enemy { get; protected set; }
+    public AutoBattlerUnit Hero { get; protected set; }
 
     [SerializeField]
     protected TextMeshProUGUI m_locationText;
@@ -23,10 +23,6 @@ public class LocationPanel : MonoBehaviour
     public void BeginBattle()
     {
         m_inBattle = true;
-
-        Hero = new IdleUnit(LocationData.GenerateEnemyData());
-        m_allyImage.sprite = Hero.UnitData.UnitSprite;
-        GenerateEnemy();
     }
 
     // Start is called before the first frame update
@@ -41,14 +37,8 @@ public class LocationPanel : MonoBehaviour
     {
         if (m_inBattle)
         {
-            Hero.UpdateAttackTimer();
-            Enemy.UpdateAttackTimer();
+            Hero.UpdateAutoAttackTimer();
+            Enemy.UpdateAutoAttackTimer();
         }
-    }
-
-    protected void GenerateEnemy()
-    {
-        Enemy = new IdleUnit(LocationData.GenerateEnemyData());
-        m_enemyImage.sprite = Enemy.UnitData.UnitSprite;
     }
 }
