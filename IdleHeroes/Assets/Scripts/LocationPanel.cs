@@ -37,8 +37,8 @@ public class LocationPanel : MonoBehaviour
     {
         if (m_inBattle)
         {
-            Hero.UpdateAutoAttackTimer();
-            Enemy.UpdateAutoAttackTimer();
+            Hero.UpdateAbilitiesTimer();
+            Enemy.UpdateAbilitiesTimer();
         }
     }
 }

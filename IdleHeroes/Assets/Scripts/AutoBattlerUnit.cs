@@ -12,41 +12,56 @@ public class AutoBattlerUnit: MonoBehaviour
     [field: SerializeField]
     public AutoBattlerUnitData UnitData { get; protected set; }
     [field: SerializeField]
-    public float CurrentAttackTimer { get; protected set; } = 0.0f;
+    public List<float> CurrentAbilitiesTimers { get; protected set; } = new List<float>();
     [SerializeField]
     protected MMF_Player m_attackEffect;
     [SerializeField]
-    protected List<Image> m_abilitiesImages = new List<Image>();
+    protected List<BattleAbilityUI> m_abilitiesUI = new List<BattleAbilityUI>();
 
     private void Start()
     {
         m_currentHealth = UnitData.BaseHealth;
+        for (int i = 0; i < UnitData.UnitAbilities.Count; i++)
+        {
+            var ability = UnitData.UnitAbilities[i];
+            m_abilitiesUI[i].EquipAbility(ability.Sprite);
+            CurrentAbilitiesTimers.Add(0);
+        }
     }
 
     void Update()
     {
-        UpdateAutoAttackTimer();
+        UpdateAbilitiesTimer();
         UpdateVisuals();
     }
 
     protected void UpdateVisuals()
     {
-        m_abilitiesImages[0].fillAmount = CurrentAttackTimer / UnitData.AttackSpeed;
+        var i = 0;
+        foreach (var abilityUI in m_abilitiesUI)
+        {
+            abilityUI.UpdateImageFillAmount(CurrentAbilitiesTimers[i] / UnitData.UnitAbilities[i].Cooldown);
+            i++;
+        }
         m_healthBar.fillAmount = m_currentHealth / UnitData.BaseHealth;
     }
 
-    public void UpdateAutoAttackTimer()
+    public void UpdateAbilitiesTimer()
     {
-        CurrentAttackTimer += Time.deltaTime;
-        m_abilitiesImages[0].fillAmount = CurrentAttackTimer / UnitData.AttackSpeed;
-        if (CurrentAttackTimer > UnitData.AttackSpeed)
+        var i = 0;
+        foreach (var ability in UnitData.UnitAbilities)
         {
-            CurrentAttackTimer %= UnitData.AttackSpeed;
-            AutoAttack();
+            CurrentAbilitiesTimers[i] += Time.deltaTime;
+            if (CurrentAbilitiesTimers[i] > ability.Cooldown)
+            {
+                CurrentAbilitiesTimers[i] %= ability.Cooldown;
+                ExecuteAction();
+            }
+            i++;
         }
     }
 
-    private void AutoAttack()
+    private void ExecuteAction()
     {
         BattleManager.Instance.QueueAction(this);
     }

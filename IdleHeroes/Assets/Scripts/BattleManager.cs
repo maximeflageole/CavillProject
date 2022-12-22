@@ -55,13 +55,3 @@ public class BattleManager : MonoBehaviour
         Debug.Log(Time.timeScale);
     }
 }
-
-public struct AutoBattlerAction
-{
-    public AutoBattlerUnit Origin;
-
-    public AutoBattlerAction(AutoBattlerUnit origin)
-    {
-        Origin = origin;
-    }
-}

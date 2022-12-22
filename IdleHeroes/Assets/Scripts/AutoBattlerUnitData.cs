@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Unit", menuName = "ScriptableObjects/Unit", order = 1)]
@@ -14,4 +15,14 @@ public class AutoBattlerUnitData : ScriptableObject
     public float BaseDamage { get; protected set; } = 10;
     [field: SerializeField]
     public float AttackSpeed { get; protected set; } = 2.0f;
+
+    public List<UnitAbility> UnitAbilities = new List<UnitAbility>();
+}
+
+[System.Serializable]
+public struct UnitAbility
+{
+    public AbilityData AbilityData;
+    public float Cooldown;
+    public Sprite Sprite;
 }
