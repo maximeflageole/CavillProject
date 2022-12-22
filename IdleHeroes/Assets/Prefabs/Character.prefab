@@ -311,6 +311,9 @@ MonoBehaviour:
   m_attackEffect: {fileID: 2389360391881119851}
   m_abilitiesUI:
   - {fileID: 8572482516234946495}
+  - {fileID: 8393367464015340088}
+  - {fileID: 7192584752801225091}
+  - {fileID: 2470512452324039061}
 --- !u!1 &2389360390507958519
 GameObject:
   m_ObjectHideFlags: 0

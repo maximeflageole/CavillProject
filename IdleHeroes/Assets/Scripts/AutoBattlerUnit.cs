@@ -38,9 +38,9 @@ public class AutoBattlerUnit: MonoBehaviour
     protected void UpdateVisuals()
     {
         var i = 0;
-        foreach (var abilityUI in m_abilitiesUI)
+        foreach (var ability in UnitData.UnitAbilities)
         {
-            abilityUI.UpdateImageFillAmount(CurrentAbilitiesTimers[i] / UnitData.UnitAbilities[i].Cooldown);
+            m_abilitiesUI[i].UpdateImageFillAmount(CurrentAbilitiesTimers[i] / UnitData.UnitAbilities[i].Cooldown);
             i++;
         }
         m_healthBar.fillAmount = m_currentHealth / UnitData.BaseHealth;
