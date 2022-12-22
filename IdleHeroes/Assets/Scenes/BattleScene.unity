@@ -1039,6 +1039,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: PlayerTimescaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: Events.TriggerMMFeedbacksEvents
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: Events.OnComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: Events.OnComplete.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: Events.OnComplete.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389360391881119851, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
+      propertyPath: Events.OnComplete.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AutoBattlerUnit, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2389889718002469854, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

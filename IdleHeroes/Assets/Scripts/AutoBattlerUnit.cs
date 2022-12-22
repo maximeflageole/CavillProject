@@ -31,6 +31,7 @@ public class AutoBattlerUnit: MonoBehaviour
 
     void Update()
     {
+        if (BattleManager.Instance.ActionInProgress) return;
         UpdateAbilitiesTimer();
         UpdateVisuals();
     }
@@ -66,9 +67,10 @@ public class AutoBattlerUnit: MonoBehaviour
         BattleManager.Instance.QueueAction(this);
     }
 
-    public void BeginAction()
+    public async void BeginAction()
     {
-        m_attackEffect?.PlayFeedbacks();
+        await m_attackEffect.PlayFeedbacksTask(transform.position);
+        OnAbilityVisualEffectComplete();
     }
 
     public void OnAbilityVisualEffectComplete()

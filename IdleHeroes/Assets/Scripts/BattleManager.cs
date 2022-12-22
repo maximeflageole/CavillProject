@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
 
     public void StopAction()
     {
+        Debug.Log(ActionQueue.Count);
         if (ActionQueue.Count != 0)
         {
             BeginAction(ActionQueue.Dequeue());
@@ -52,6 +53,5 @@ public class BattleManager : MonoBehaviour
         {
             BeginAction(ActionQueue.Dequeue());
         }
-        Debug.Log(Time.timeScale);
     }
 }
