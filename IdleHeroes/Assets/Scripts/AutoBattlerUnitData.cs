@@ -13,8 +13,6 @@ public class AutoBattlerUnitData : ScriptableObject
     public float BaseHealth { get; protected set; } = 100; //Health will represent how long a hero can stay on a mission!
     [field: SerializeField]
     public float BaseDamage { get; protected set; } = 10;
-    [field: SerializeField]
-    public float AttackSpeed { get; protected set; } = 2.0f;
 
     public List<UnitAbility> UnitAbilities = new List<UnitAbility>();
 }
