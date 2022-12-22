@@ -48,12 +48,16 @@ public class AutoBattlerUnit: MonoBehaviour
 
     private void AutoAttack()
     {
+        BattleManager.Instance.QueueAction(this);
+    }
+
+    public void BeginAction()
+    {
         m_attackEffect?.PlayFeedbacks();
-        BattleManager.Instance.BeginAttack();
     }
 
     public void OnAbilityVisualEffectComplete()
     {
-        BattleManager.Instance.StopAttack();
+        BattleManager.Instance.StopAction();
     }
 }

@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleManager : MonoBehaviour
@@ -7,14 +8,29 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private MMTimeManager m_timeManager;
+    private Queue<AutoBattlerAction> ActionQueue = new Queue<AutoBattlerAction>();
+    public bool ActionInProgress { get; private set; }
 
-    public void BeginAttack()
+    public void QueueAction(AutoBattlerUnit origin)
     {
+        ActionQueue.Enqueue(new AutoBattlerAction(origin));
+    }
+
+    public void BeginAction(AutoBattlerAction action)
+    {
+        ActionInProgress = true;
+        action.Origin.BeginAction();
         m_timeManager.SetTimeScaleTo(0);
     }
 
-    public void StopAttack()
+    public void StopAction()
     {
+        if (ActionQueue.Count != 0)
+        {
+            BeginAction(ActionQueue.Dequeue());
+            return;
+        }
+        ActionInProgress = false;
         m_timeManager.SetTimeScaleTo(1);
     }
 
@@ -32,6 +48,20 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!ActionInProgress && ActionQueue.Count != 0)
+        {
+            BeginAction(ActionQueue.Dequeue());
+        }
         Debug.Log(Time.timeScale);
+    }
+}
+
+public struct AutoBattlerAction
+{
+    public AutoBattlerUnit Origin;
+
+    public AutoBattlerAction(AutoBattlerUnit origin)
+    {
+        Origin = origin;
     }
 }

@@ -588,7 +588,7 @@ MonoBehaviour:
   AutoPlayOnEnable: 0
   ForceTimescaleMode: 1
   ForcedTimescaleMode: 1
-  DurationMultiplier: 1
+  DurationMultiplier: 1.2
   RandomizeDuration: 0
   RandomDurationMultiplier: {x: 0.5, y: 1.5}
   DisplayFullDurationDetails: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   RemapRangeFalloff: {x: 0, y: 1}
   IgnoreRangeEvents: 0
   CooldownDuration: 0
-  InitialDelay: 0
+  InitialDelay: 0.1
   CanPlay: 1
   CanPlayWhileAlreadyPlaying: 1
   ChanceToPlay: 100
