@@ -10,14 +10,20 @@ public class BattleManager : MonoBehaviour
     private MMTimeManager m_timeManager;
     private Queue<AutoBattlerAction> ActionQueue = new Queue<AutoBattlerAction>();
     public bool ActionInProgress { get; private set; }
+    private AutoBattlerAction CurrentAction;
+    [field:SerializeField]
+    public AutoBattlerTeam PlayerTeam { get; protected set; }
+    [field:SerializeField]
+    public AutoBattlerTeam EnemyTeam { get; protected set; }
 
-    public void QueueAction(AutoBattlerUnit origin)
+    public void QueueAction(AutoBattlerUnit origin, AbilityData abilityData)
     {
-        ActionQueue.Enqueue(new AutoBattlerAction(origin));
+        ActionQueue.Enqueue(new AutoBattlerAction(origin, abilityData));
     }
 
     public void BeginAction(AutoBattlerAction action)
     {
+        CurrentAction = action;
         ActionInProgress = true;
         action.Origin.BeginAction();
         m_timeManager.SetTimeScaleTo(0);
@@ -25,7 +31,9 @@ public class BattleManager : MonoBehaviour
 
     public void StopAction()
     {
-        Debug.Log(ActionQueue.Count);
+        ExecuteAbility(CurrentAction.AbilityData, CurrentAction.Origin);
+        CurrentAction = null;
+
         if (ActionQueue.Count != 0)
         {
             BeginAction(ActionQueue.Dequeue());
@@ -53,5 +61,48 @@ public class BattleManager : MonoBehaviour
         {
             BeginAction(ActionQueue.Dequeue());
         }
+    }
+
+    private void ExecuteAbility(AbilityData abilityData, AutoBattlerUnit unit)
+    {
+        foreach (var effect in abilityData.Effects.actionEffects)
+        {
+            var target = GetTarget(unit, effect);
+            if (target == null)
+                continue;
+
+            unit.ExecuteEffect(target, effect.Effect);
+        }
+    }
+
+    private AutoBattlerUnit GetTarget(AutoBattlerUnit unit, SActionEffect effect)
+    {
+        foreach (var targetType in effect.TargetTypes)
+        {
+            switch (targetType)
+            {
+                case ETargetType.Melee:
+                    return GetUnitAtIndex(unit, true, 0);
+                case ETargetType.Self:
+                    return unit;
+                case ETargetType.Ally:
+                    break;
+                case ETargetType.Count:
+                    break;
+                default:
+                    break;
+            }
+        }
+        return null;
+    }
+
+    private AutoBattlerUnit GetUnitAtIndex(AutoBattlerUnit unit, bool enemyTeam, int index)
+    {
+        var targetedTeam = EnemyTeam;
+        if ((unit.IsInPlayerTeam && !enemyTeam) || (!unit.IsInPlayerTeam && enemyTeam))
+        {
+            targetedTeam = PlayerTeam;
+        }
+        return targetedTeam.GetUnitAtIndex(index);
     }
 }

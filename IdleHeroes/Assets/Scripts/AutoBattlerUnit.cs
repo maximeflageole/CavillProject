@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AutoBattlerUnit: MonoBehaviour
 {
+    public bool IsInPlayerTeam { get; set; }
     [SerializeField]
     protected float m_currentHealth;
     [SerializeField]
@@ -56,15 +57,15 @@ public class AutoBattlerUnit: MonoBehaviour
             if (CurrentAbilitiesTimers[i] > ability.Cooldown)
             {
                 CurrentAbilitiesTimers[i] %= ability.Cooldown;
-                ExecuteAction();
+                ExecuteAction(i);
             }
             i++;
         }
     }
 
-    private void ExecuteAction()
+    private void ExecuteAction(int index)
     {
-        BattleManager.Instance.QueueAction(this);
+        BattleManager.Instance.QueueAction(this, UnitData.UnitAbilities[index].AbilityData);
     }
 
     public async void BeginAction()
@@ -76,5 +77,42 @@ public class AutoBattlerUnit: MonoBehaviour
     public void OnAbilityVisualEffectComplete()
     {
         BattleManager.Instance.StopAction();
+    }
+
+    public void ExecuteEffect(AutoBattlerUnit target, EEffectType effectType)
+    {
+        switch (effectType)
+        {
+            case EEffectType.Damage:
+                DamageUnit(target);
+                break;
+            case EEffectType.Heal:
+                HealUnit(target);
+                break;
+            case EEffectType.Count:
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected void DamageUnit(AutoBattlerUnit target)
+    {
+        target.ReceiveDamage(UnitData.BaseDamage);
+    }
+
+    protected void HealUnit(AutoBattlerUnit target)
+    {
+        target.ReceiveHealing(UnitData.BaseDamage);
+    }
+
+    public void ReceiveDamage(float damage)
+    {
+        m_currentHealth -= damage;
+    }
+
+    public void ReceiveHealing(float healAmount)
+    {
+        m_currentHealth += healAmount;
     }
 }
