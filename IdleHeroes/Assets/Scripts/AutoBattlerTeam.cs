@@ -33,4 +33,9 @@ public class AutoBattlerTeam : MonoBehaviour
         }
         return null;
     }
+
+    public void OnUnitDeath()
+    {
+
+    }
 }

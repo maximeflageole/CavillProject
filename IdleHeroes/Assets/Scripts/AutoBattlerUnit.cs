@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using MRF.Containers;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ public class AutoBattlerUnit: MonoBehaviour
 {
     public bool IsInPlayerTeam { get; set; }
     [SerializeField]
-    protected float m_currentHealth;
+    protected Container m_healthContainer;
     [SerializeField]
     protected Image m_healthBar;
     [field: SerializeField]
@@ -15,13 +16,20 @@ public class AutoBattlerUnit: MonoBehaviour
     [field: SerializeField]
     public List<float> CurrentAbilitiesTimers { get; protected set; } = new List<float>();
     [SerializeField]
-    protected MMF_Player m_attackEffect;
-    [SerializeField]
     protected List<BattleAbilityUI> m_abilitiesUI = new List<BattleAbilityUI>();
+
+    //FEEL Effects
+    [SerializeField]
+    protected MMF_Player m_attackEffect;
+
+    //Actions
+    public System.Action<AutoBattlerUnit> OnUnitDeath;
 
     private void Start()
     {
-        m_currentHealth = UnitData.BaseHealth;
+        m_healthContainer = new Container(UnitData.BaseHealth);
+        m_healthContainer.OnEmptyCallback += OnHealthEmptied;
+
         for (int i = 0; i < UnitData.UnitAbilities.Count; i++)
         {
             var ability = UnitData.UnitAbilities[i];
@@ -32,9 +40,15 @@ public class AutoBattlerUnit: MonoBehaviour
 
     void Update()
     {
+        UpdateHealth();
         if (BattleManager.Instance.ActionInProgress) return;
         UpdateAbilitiesTimer();
         UpdateVisuals();
+    }
+
+    protected void UpdateHealth()
+    {
+        m_healthBar.fillAmount = m_healthContainer.CurrentValue / m_healthContainer.GetMaxValue();
     }
 
     protected void UpdateVisuals()
@@ -45,7 +59,6 @@ public class AutoBattlerUnit: MonoBehaviour
             m_abilitiesUI[i].UpdateImageFillAmount(CurrentAbilitiesTimers[i] / UnitData.UnitAbilities[i].Cooldown);
             i++;
         }
-        m_healthBar.fillAmount = m_currentHealth / UnitData.BaseHealth;
     }
 
     public void UpdateAbilitiesTimer()
@@ -108,11 +121,22 @@ public class AutoBattlerUnit: MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        m_currentHealth -= damage;
+        m_healthContainer.RemoveValue(damage);
     }
 
     public void ReceiveHealing(float healAmount)
     {
-        m_currentHealth += healAmount;
+        m_healthContainer.AddValue(healAmount);
+    }
+
+    public bool IsAlive()
+    {
+        return !m_healthContainer.IsEmpty();
+    }
+
+    protected void OnHealthEmptied()
+    {
+        OnUnitDeath?.Invoke(this);
+        Destroy(gameObject);
     }
 }

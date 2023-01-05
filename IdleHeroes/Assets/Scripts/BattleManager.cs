@@ -7,7 +7,7 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance;
 
     [SerializeField]
-    private MMTimeManager m_timeManager;
+    private MMF_Player m_timePlayer;
     private Queue<AutoBattlerAction> ActionQueue = new Queue<AutoBattlerAction>();
     public bool ActionInProgress { get; private set; }
     private AutoBattlerAction CurrentAction;
@@ -26,7 +26,7 @@ public class BattleManager : MonoBehaviour
         CurrentAction = action;
         ActionInProgress = true;
         action.Origin.BeginAction();
-        m_timeManager.SetTimeScaleTo(0);
+        m_timePlayer.PlayFeedbacks();
     }
 
     public void StopAction()
@@ -40,7 +40,6 @@ public class BattleManager : MonoBehaviour
             return;
         }
         ActionInProgress = false;
-        m_timeManager.SetTimeScaleTo(1);
     }
 
     // Start is called before the first frame update

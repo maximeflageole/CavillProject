@@ -1589,7 +1589,7 @@ MonoBehaviour:
         Chance: 100
         DisplayColor: {r: 0, g: 0, b: 0, a: 1}
         Timing:
-          TimescaleMode: 0
+          TimescaleMode: 1
           ExcludeFromHoldingPauses: 0
           ContributeToTotalDuration: 1
           InitialDelay: 0
@@ -1642,13 +1642,13 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 2105503882}
         DebugActive: 0
-        Mode: 1
-        TimeScale: 0
-        TimeScaleDuration: 1
-        ResetTimescaleOnStop: 1
-        TimeScaleLerp: 0
+        Mode: 0
+        TimeScale: 0.2
+        TimeScaleDuration: 0.5
+        ResetTimescaleOnStop: 0
+        TimeScaleLerp: 1
         TimescaleLerpMode: 0
-        TimeScaleLerpSpeed: 1
+        TimeScaleLerpSpeed: 10
         TimescaleLerpCurve:
           MMTweenDefinitionType: 1
           MMTweenCurve: 4
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b8327d345fd464dbab6350fed5638a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeManager: {fileID: 2105503883}
+  m_timePlayer: {fileID: 2105503882}
   <PlayerTeam>k__BackingField: {fileID: 1890647939}
   <EnemyTeam>k__BackingField: {fileID: 532327101}
 --- !u!1001 &2389360389957829523
