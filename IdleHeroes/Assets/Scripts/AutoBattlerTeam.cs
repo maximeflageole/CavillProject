@@ -37,5 +37,6 @@ public class AutoBattlerTeam : MonoBehaviour
     public void OnUnitDeath(AutoBattlerUnit deadUnit)
     {
         AutoBattlerUnits.Remove(deadUnit);
+        BattleManager.Instance.VerifyBattleEnding();
     }
 }

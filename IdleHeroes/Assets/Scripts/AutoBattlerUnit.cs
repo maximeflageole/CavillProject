@@ -45,7 +45,7 @@ public class AutoBattlerUnit: MonoBehaviour
     void Update()
     {
         UpdateHealth();
-        if (BattleManager.Instance.ActionInProgress) return;
+        if (BattleManager.Instance.AbilityInProgress) return;
         UpdateAbilitiesTimer();
         UpdateAbilitiesUI();
     }
@@ -109,7 +109,7 @@ public class AutoBattlerUnit: MonoBehaviour
 
     public void OnAbilityVisualEffectComplete()
     {
-        BattleManager.Instance.StopAction();
+        BattleManager.Instance.OnAbilityAnimationOver();
     }
 
     public void ExecuteEffect(AutoBattlerUnit target, EEffectType effectType)

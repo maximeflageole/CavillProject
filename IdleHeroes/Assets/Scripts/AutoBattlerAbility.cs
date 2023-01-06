@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-public class AutoBattlerAction
+public class AutoBattlerAbility
 {
     public AutoBattlerUnit Origin;
     public AbilityData AbilityData;
 
-    public AutoBattlerAction(AutoBattlerUnit origin, AbilityData abilityData)
+    public AutoBattlerAbility(AutoBattlerUnit origin, AbilityData abilityData)
     {
         Origin = origin;
         AbilityData = abilityData;

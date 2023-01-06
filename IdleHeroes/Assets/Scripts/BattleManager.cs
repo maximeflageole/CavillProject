@@ -1,6 +1,8 @@
 using MoreMountains.Feedbacks;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -8,42 +10,19 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private MMF_Player m_timePlayer;
-    private Queue<AutoBattlerAction> ActionQueue = new Queue<AutoBattlerAction>();
-    public bool ActionInProgress { get; private set; }
-    private AutoBattlerAction CurrentAction;
+    private Queue<AutoBattlerAbility> ActionQueue = new Queue<AutoBattlerAbility>();
+    public bool AbilityInProgress { get; private set; }
+    private AutoBattlerAbility CurrentAction;
     [field:SerializeField]
     public AutoBattlerTeam PlayerTeam { get; protected set; }
     [field:SerializeField]
     public AutoBattlerTeam EnemyTeam { get; protected set; }
 
-    public void QueueAbility(AutoBattlerUnit origin, AbilityData abilityData)
-    {
-        ActionQueue.Enqueue(new AutoBattlerAction(origin, abilityData));
-    }
-
-    public bool TryBeginAction(AutoBattlerAction action)
-    {
-        if (action.Origin == null) return false;
-
-        CurrentAction = action;
-        ActionInProgress = true;
-        action.Origin.BeginAbility();
-        m_timePlayer.PlayFeedbacks();
-        return true;
-    }
-
-    public void StopAction()
-    {
-        ExecuteAbility(CurrentAction.AbilityData, CurrentAction.Origin);
-        CurrentAction = null;
-
-        while (ActionQueue.Count != 0)
-        {
-            if (TryBeginAction(ActionQueue.Dequeue()))
-                return;
-        }
-        ActionInProgress = false;
-    }
+    //UIs
+    [SerializeField]
+    private Canvas m_battleResultUI;
+    [SerializeField]
+    private TextMeshProUGUI m_battleResultText;
 
     // Start is called before the first frame update
     void Awake()
@@ -59,9 +38,60 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (!ActionInProgress && ActionQueue.Count != 0)
+        while (!AbilityInProgress && ActionQueue.Count != 0)
         {
-            if (TryBeginAction(ActionQueue.Dequeue())) return;
+            if (TryBeginAbility(ActionQueue.Dequeue())) return;
+        }
+    }
+
+    public void ResetBattle()
+    {
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
+    }
+
+    public void QueueAbility(AutoBattlerUnit origin, AbilityData abilityData)
+    {
+        ActionQueue.Enqueue(new AutoBattlerAbility(origin, abilityData));
+    }
+
+    public bool TryBeginAbility(AutoBattlerAbility ability)
+    {
+        if (ability.Origin == null) return false;
+
+        CurrentAction = ability;
+        AbilityInProgress = true;
+        ability.Origin.BeginAbility();
+        m_timePlayer.PlayFeedbacks();
+        return true;
+    }
+
+    public void OnAbilityAnimationOver()
+    {
+        ExecuteAbility(CurrentAction.AbilityData, CurrentAction.Origin);
+        CurrentAction = null;
+
+        while (ActionQueue.Count != 0)
+        {
+            if (TryBeginAbility(ActionQueue.Dequeue()))
+                return;
+        }
+        AbilityInProgress = false;
+    }
+
+    public void VerifyBattleEnding()
+    {
+        if (PlayerTeam.AutoBattlerUnits.Count == 0)
+        {
+            m_battleResultUI.enabled = true;
+            m_battleResultText.text= "Game lost!";
+            Debug.Log("game lost");
+            return;
+        }
+        if (EnemyTeam.AutoBattlerUnits.Count == 0)
+        {
+            m_battleResultUI.enabled = true;
+            m_battleResultText.text = "Game won!";
+            Debug.Log("game won");
         }
     }
 
