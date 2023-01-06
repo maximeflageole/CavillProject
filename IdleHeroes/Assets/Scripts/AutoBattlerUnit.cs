@@ -1,12 +1,16 @@
 using MoreMountains.Feedbacks;
 using MRF.Containers;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AutoBattlerUnit: MonoBehaviour
 {
-    public bool IsInPlayerTeam { get; set; }
+    protected AutoBattlerTeam m_team;
+    public bool IsInPlayerTeam { get; protected set; }
+    protected CancellationTokenSource m_cancellationToken;
+
     [SerializeField]
     protected Container m_healthContainer;
     [SerializeField]
@@ -43,7 +47,14 @@ public class AutoBattlerUnit: MonoBehaviour
         UpdateHealth();
         if (BattleManager.Instance.ActionInProgress) return;
         UpdateAbilitiesTimer();
-        UpdateVisuals();
+        UpdateAbilitiesUI();
+    }
+
+    public void RegisterTeam(AutoBattlerTeam team, bool isPlayerTeam)
+    {
+        IsInPlayerTeam = isPlayerTeam;
+        m_team = team;
+        OnUnitDeath += m_team.OnUnitDeath;
     }
 
     protected void UpdateHealth()
@@ -51,7 +62,7 @@ public class AutoBattlerUnit: MonoBehaviour
         m_healthBar.fillAmount = m_healthContainer.CurrentValue / m_healthContainer.GetMaxValue();
     }
 
-    protected void UpdateVisuals()
+    protected void UpdateAbilitiesUI()
     {
         var i = 0;
         foreach (var ability in UnitData.UnitAbilities)
@@ -70,20 +81,29 @@ public class AutoBattlerUnit: MonoBehaviour
             if (CurrentAbilitiesTimers[i] > ability.Cooldown)
             {
                 CurrentAbilitiesTimers[i] %= ability.Cooldown;
-                ExecuteAction(i);
+                ExecuteAbility(i);
             }
             i++;
         }
     }
 
-    private void ExecuteAction(int index)
+    private void ExecuteAbility(int index)
     {
-        BattleManager.Instance.QueueAction(this, UnitData.UnitAbilities[index].AbilityData);
+        BattleManager.Instance.QueueAbility(this, UnitData.UnitAbilities[index].AbilityData);
     }
 
-    public async void BeginAction()
+    public async void BeginAbility()
     {
-        await m_attackEffect.PlayFeedbacksTask(transform.position);
+        m_cancellationToken = new CancellationTokenSource();
+        try
+        {
+            await m_attackEffect.PlayFeedbacksTask(transform.position);
+        }
+        finally
+        {
+            m_cancellationToken.Dispose();
+            m_cancellationToken = null;
+        }
         OnAbilityVisualEffectComplete();
     }
 
@@ -137,6 +157,7 @@ public class AutoBattlerUnit: MonoBehaviour
     protected void OnHealthEmptied()
     {
         OnUnitDeath?.Invoke(this);
+        m_cancellationToken?.Cancel();
         Destroy(gameObject);
     }
 }

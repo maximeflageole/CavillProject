@@ -16,17 +16,20 @@ public class BattleManager : MonoBehaviour
     [field:SerializeField]
     public AutoBattlerTeam EnemyTeam { get; protected set; }
 
-    public void QueueAction(AutoBattlerUnit origin, AbilityData abilityData)
+    public void QueueAbility(AutoBattlerUnit origin, AbilityData abilityData)
     {
         ActionQueue.Enqueue(new AutoBattlerAction(origin, abilityData));
     }
 
-    public void BeginAction(AutoBattlerAction action)
+    public bool TryBeginAction(AutoBattlerAction action)
     {
+        if (action.Origin == null) return false;
+
         CurrentAction = action;
         ActionInProgress = true;
-        action.Origin.BeginAction();
+        action.Origin.BeginAbility();
         m_timePlayer.PlayFeedbacks();
+        return true;
     }
 
     public void StopAction()
@@ -34,10 +37,10 @@ public class BattleManager : MonoBehaviour
         ExecuteAbility(CurrentAction.AbilityData, CurrentAction.Origin);
         CurrentAction = null;
 
-        if (ActionQueue.Count != 0)
+        while (ActionQueue.Count != 0)
         {
-            BeginAction(ActionQueue.Dequeue());
-            return;
+            if (TryBeginAction(ActionQueue.Dequeue()))
+                return;
         }
         ActionInProgress = false;
     }
@@ -56,9 +59,9 @@ public class BattleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ActionInProgress && ActionQueue.Count != 0)
+        while (!ActionInProgress && ActionQueue.Count != 0)
         {
-            BeginAction(ActionQueue.Dequeue());
+            if (TryBeginAction(ActionQueue.Dequeue())) return;
         }
     }
 

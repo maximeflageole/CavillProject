@@ -16,7 +16,7 @@ public class AutoBattlerTeam : MonoBehaviour
         foreach (var unit in units)
         {
             AutoBattlerUnits.Add(unit);
-            unit.IsInPlayerTeam = IsPlayerTeam;
+            unit.RegisterTeam(this, IsPlayerTeam);
         }
     }
 
@@ -34,8 +34,8 @@ public class AutoBattlerTeam : MonoBehaviour
         return null;
     }
 
-    public void OnUnitDeath()
+    public void OnUnitDeath(AutoBattlerUnit deadUnit)
     {
-
+        AutoBattlerUnits.Remove(deadUnit);
     }
 }
