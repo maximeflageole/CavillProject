@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HubMainPanel : MonoBehaviour
@@ -13,10 +14,15 @@ public class HubMainPanel : MonoBehaviour
 
     [field: SerializeField]
     public TeamListView TeamListView { get; protected set; }
+    [field: SerializeField]
+    public MissionsPanel MissionsPanel { get; protected set; }
+    [SerializeField]
+    private List<LocationData> m_locationsData = new List<LocationData>();
 
     private void Start()
     {
         TeamListView.Instantiate(this);
+        MissionsPanel.Instantiate(this, m_locationsData);
     }
 
     public void OnAbilityTreeBtnClicked()

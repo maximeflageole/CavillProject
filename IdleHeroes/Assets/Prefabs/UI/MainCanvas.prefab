@@ -4176,6 +4176,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7650419926343460472, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+      propertyPath: m_missionBtnPrefab
+      value: 
+      objectReference: {fileID: 2849148415328966304, guid: 85fb082abad61a548a62b6210e0f5f23, type: 3}
     - target: {fileID: 7844926557886965824, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
