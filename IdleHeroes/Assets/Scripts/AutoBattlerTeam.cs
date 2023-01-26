@@ -3,20 +3,33 @@ using UnityEngine;
 
 public class AutoBattlerTeam : MonoBehaviour
 {
+    public GameObject UnitPrefab;
     [field:SerializeField]
     public bool IsPlayerTeam { get; protected set; }
     [field:SerializeField]
     public List<AutoBattlerUnit> AutoBattlerUnits { get; protected set; }
+    [field: SerializeField]
+    public List<AutoBattlerBattleInstance> AutoBattlerBattleInstances { get; protected set; }
 
     private void Start()
     {
         AutoBattlerUnits.Clear();
-        var units = GetComponentsInChildren<AutoBattlerUnit>();
+        var units = GetComponentsInChildren<AutoBattlerBattleInstance>();
 
         foreach (var unit in units)
         {
-            AutoBattlerUnits.Add(unit);
+            AutoBattlerBattleInstances.Add(unit);
             unit.RegisterTeam(this, IsPlayerTeam);
+        }
+    }
+
+    public void LoadTeam(TeamData teamData)
+    {
+        foreach (var unitData in teamData.TeamUnits)
+        {
+            var unitInstance = Instantiate(UnitPrefab, transform).GetComponent<AutoBattlerUnit>();
+            AutoBattlerUnits.Add(unitInstance);
+            unitInstance.SetData(unitData);
         }
     }
 
@@ -25,18 +38,18 @@ public class AutoBattlerTeam : MonoBehaviour
         return (AutoBattlerUnits.Count > index);
     }
 
-    public AutoBattlerUnit GetUnitAtIndex(int index)
+    public AutoBattlerBattleInstance GetUnitAtIndex(int index)
     {
         if (HasUnitAtIndex(index))
         {
-            return AutoBattlerUnits[index];
+            return AutoBattlerBattleInstances[index];
         }
         return null;
     }
 
-    public void OnUnitDeath(AutoBattlerUnit deadUnit)
+    public void OnUnitDeath(AutoBattlerBattleInstance deadUnit)
     {
-        AutoBattlerUnits.Remove(deadUnit);
+        AutoBattlerBattleInstances.Remove(deadUnit);
         BattleManager.Instance.VerifyBattleEnding();
     }
 }

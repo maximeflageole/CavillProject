@@ -49,7 +49,7 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
     }
 
-    public void QueueAbility(AutoBattlerUnit origin, AbilityData abilityData)
+    public void QueueAbility(AutoBattlerBattleInstance origin, AbilityData abilityData)
     {
         ActionQueue.Enqueue(new AutoBattlerAbility(origin, abilityData));
     }
@@ -95,7 +95,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void ExecuteAbility(AbilityData abilityData, AutoBattlerUnit unit)
+    private void ExecuteAbility(AbilityData abilityData, AutoBattlerBattleInstance unit)
     {
         foreach (var effect in abilityData.Effects.actionEffects)
         {
@@ -107,7 +107,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private AutoBattlerUnit GetTarget(AutoBattlerUnit unit, SActionEffect effect)
+    private AutoBattlerBattleInstance GetTarget(AutoBattlerBattleInstance unit, SActionEffect effect)
     {
         foreach (var targetType in effect.TargetTypes)
         {
@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
         return null;
     }
 
-    private AutoBattlerUnit GetUnitAtIndex(AutoBattlerUnit unit, bool enemyTeam, int index)
+    private AutoBattlerBattleInstance GetUnitAtIndex(AutoBattlerBattleInstance unit, bool enemyTeam, int index)
     {
         var targetedTeam = EnemyTeam;
         if ((unit.IsInPlayerTeam && !enemyTeam) || (!unit.IsInPlayerTeam && enemyTeam))

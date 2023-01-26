@@ -5,6 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager _Instance;
 
+    public AutoBattlerTeam PlayerTeam;
+    public TeamData DefaultTeamData;
+
+    [SerializeField]
+    protected HubMainPanel m_hubMainPanel;
+
     protected int m_yellowOrbs = 0;
     protected int m_redOrbs = 0;
     protected int m_blueOrbs = 0;
@@ -29,10 +35,14 @@ public class GameManager : MonoBehaviour
         _Instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        if (PlayerTeam.AutoBattlerUnits.Count != 0)
+        {
+            return;
+        }
+        PlayerTeam.LoadTeam(DefaultTeamData);
+        m_hubMainPanel.TeamListView.Instantiate(PlayerTeam);
     }
 
     // Update is called once per frame
