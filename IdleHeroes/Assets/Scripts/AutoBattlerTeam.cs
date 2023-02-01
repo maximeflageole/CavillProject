@@ -14,10 +14,12 @@ public class AutoBattlerTeam : MonoBehaviour
     private void Start()
     {
         AutoBattlerUnits.Clear();
+        AutoBattlerBattleInstances.Clear();
         var units = GetComponentsInChildren<AutoBattlerBattleInstance>();
 
         foreach (var unit in units)
         {
+            AutoBattlerUnits.Add(unit.GetComponent<AutoBattlerUnit>());
             AutoBattlerBattleInstances.Add(unit);
             unit.RegisterTeam(this, IsPlayerTeam);
         }
