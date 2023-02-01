@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public AutoBattlerTeam PlayerTeam;
     public TeamData DefaultTeamData;
 
-    [SerializeField]
-    protected HubMainPanel m_hubMainPanel;
+    [field:SerializeField]
+    public HubMainPanel HubMainPanel { get; protected set; }
 
     protected int m_yellowOrbs = 0;
     protected int m_redOrbs = 0;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         PlayerTeam.LoadTeam(DefaultTeamData);
-        m_hubMainPanel.TeamListView.Instantiate(PlayerTeam);
+        HubMainPanel.TeamListView.Instantiate(PlayerTeam);
     }
 
     // Update is called once per frame

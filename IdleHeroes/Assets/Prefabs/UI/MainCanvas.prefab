@@ -2290,7 +2290,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7015167720736294342}
         m_TargetAssemblyTypeName: HubMainPanel, Assembly-CSharp
-        m_MethodName: OnMissionsBtnClicked
+        m_MethodName: OnWorldBtnClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3612,6 +3612,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4466362001454646598, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+      propertyPath: m_worldPanel
+      value: 
+      objectReference: {fileID: 3905636194648295994}
+    - target: {fileID: 4466362001454646598, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+      propertyPath: m_missionPanel
+      value: 
+      objectReference: {fileID: 1307300030930785169}
     - target: {fileID: 4491072689845168073, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4330,6 +4338,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+--- !u!1 &1307300030930785169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5657967264431559441, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+  m_PrefabInstance: {fileID: 6674709909076426880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3905636194648295994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7679426956935056058, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}
+  m_PrefabInstance: {fileID: 6674709909076426880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7015167720736294342 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4466362001454646598, guid: 02ad494c5daa26046840a75ee45175a5, type: 3}

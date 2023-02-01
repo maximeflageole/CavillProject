@@ -6,6 +6,8 @@ public class HubMainPanel : MonoBehaviour
     [SerializeField]
     protected GameObject m_teamScrollView;
     [SerializeField]
+    protected GameObject m_worldPanel;
+    [SerializeField]
     protected GameObject m_missionPanel;
     [SerializeField]
     protected GameObject m_unitDetailsPanel;
@@ -25,27 +27,41 @@ public class HubMainPanel : MonoBehaviour
         MissionsPanel.Instantiate(this, m_locationsData);
     }
 
+    private void CloseEveryPanel()
+    {
+        m_worldPanel.SetActive(false);
+        m_unitDetailsPanel.SetActive(false);
+        m_missionPanel.SetActive(false);
+        m_abilityTreeUI.SetActive(false);
+    }
+
     public void OnAbilityTreeBtnClicked()
     {
-        m_unitDetailsPanel.SetActive(false);
+        CloseEveryPanel();
         m_abilityTreeUI.SetActive(true);
     }
 
     public void OnExitBtnClicked()
     {
-        m_abilityTreeUI.SetActive(false);
+        CloseEveryPanel();
         m_unitDetailsPanel.SetActive(true);
     }
 
     public void OnUnitClicked(AutoBattlerUnit unit)
     {
-        m_missionPanel.gameObject.SetActive(false);
+        CloseEveryPanel();
         m_unitDetailsPanel.gameObject.SetActive(true);
     }
 
-    public void OnMissionsBtnClicked()
+    public void OnWorldBtnClicked()
     {
-        m_unitDetailsPanel.gameObject.SetActive(false);
+        CloseEveryPanel();
+        m_worldPanel.gameObject.SetActive(true);
+    }
+
+    public void OnMissionBtnClicked()
+    {
+        CloseEveryPanel();
         m_missionPanel.gameObject.SetActive(true);
     }
 }

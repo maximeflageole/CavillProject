@@ -14,4 +14,9 @@ public class MissionButton : MonoBehaviour
         m_missionBiomeName.text = locationData.LocationName;
         m_biomeImage.sprite = locationData.LocationSprite;
     }
+
+    public void OnClick()
+    {
+        GameManager._Instance.HubMainPanel.OnMissionBtnClicked();
+    }
 }

@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerTeam: {fileID: 1742083799}
   DefaultTeamData: {fileID: 11400000, guid: e71bec65282c2734f8c3d28ccbec92a1, type: 2}
-  m_hubMainPanel: {fileID: 2036848087435764915}
+  <HubMainPanel>k__BackingField: {fileID: 2036848087435764915}
   m_yellowOrbsText: {fileID: 16934068}
   m_redOrbsText: {fileID: 363901780}
   m_blueOrbsText: {fileID: 247428600}
@@ -217,6 +217,11 @@ MonoBehaviour:
 --- !u!224 &415916311 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2036848087045014949, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+  m_PrefabInstance: {fileID: 2036848087435764914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1238844917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3905636194648295994, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
   m_PrefabInstance: {fileID: 2036848087435764914}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1329069656 stripped
@@ -505,6 +510,10 @@ PrefabInstance:
     - target: {fileID: 21767034866436634, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112096589054704768, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnWorldBtnClicked
       objectReference: {fileID: 0}
     - target: {fileID: 543426321992247295, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1776,19 +1785,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3806168260454782658, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 880
+      value: 444
       objectReference: {fileID: 0}
     - target: {fileID: 3806168260454782658, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 592
+      value: 597
       objectReference: {fileID: 0}
     - target: {fileID: 3806168260454782658, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 720
+      value: 502
       objectReference: {fileID: 0}
     - target: {fileID: 3806168260454782658, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -296
+      value: -298.5
       objectReference: {fileID: 0}
     - target: {fileID: 3905636194648295994, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_IsActive
@@ -2778,6 +2787,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7015167720736294342, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_worldPanel
+      value: 
+      objectReference: {fileID: 1238844917}
     - target: {fileID: 7015167720736294342, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_teamScrollView
       value: 

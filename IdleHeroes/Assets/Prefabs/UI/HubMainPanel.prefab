@@ -10217,7 +10217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_teamScrollView: {fileID: 2658666765508194578}
-  m_missionPanel: {fileID: 7679426956935056058}
+  m_worldPanel: {fileID: 7679426956935056058}
+  m_missionPanel: {fileID: 5657967264431559441}
   m_unitDetailsPanel: {fileID: 8229986312798921950}
   m_abilityTreeUI: {fileID: 1302478602}
   <TeamListView>k__BackingField: {fileID: 1250103128109787195}
