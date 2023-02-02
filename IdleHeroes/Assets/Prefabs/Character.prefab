@@ -574,11 +574,7 @@ MonoBehaviour:
   m_healthBar: {fileID: 2558409163153830797}
   m_unitInstance: {fileID: 1704697751182564009}
   <CurrentAbilitiesTimers>k__BackingField: []
-  m_abilitiesUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_abilitiesUI: []
   m_attackEffect: {fileID: 2389360391881119851}
 --- !u!114 &1704697751182564009
 MonoBehaviour:
