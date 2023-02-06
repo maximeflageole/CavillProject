@@ -10,16 +10,16 @@ public class TeamListView : MonoBehaviour
         m_mainPanel = mainPanel;
     }
 
-    public void Instantiate(AutoBattlerTeam autoBattlerTeam)
+    public void Instantiate(ABTeam ABTeam)
     {
-        foreach (var unit in autoBattlerTeam.AutoBattlerUnits)
+        foreach (var unit in ABTeam.ABUnits)
         {
             var unitBtnInstance = Instantiate(m_characterButtonPrefab, transform).GetComponent<UnitPanelButton>();
             unitBtnInstance.Initialize(unit, this);
         }
     }
 
-    public void OnUnitPanelClicked(AutoBattlerUnit unit)
+    public void OnUnitPanelClicked(ABUnit unit)
     {
         m_mainPanel.OnUnitClicked(unit);
     }

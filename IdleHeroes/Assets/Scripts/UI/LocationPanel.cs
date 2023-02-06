@@ -14,8 +14,8 @@ public class LocationPanel : MonoBehaviour
     [SerializeField]
     protected Image m_enemyImage;
 
-    public AutoBattlerBattleInstance Enemy { get; protected set; }
-    public AutoBattlerBattleInstance Hero { get; protected set; }
+    public ABBattleInstance Enemy { get; protected set; }
+    public ABBattleInstance Hero { get; protected set; }
 
     [SerializeField]
     protected TextMeshProUGUI m_locationText;

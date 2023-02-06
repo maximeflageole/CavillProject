@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Team", menuName = "ScriptableObjects/TeamData", order = 3)]
 public class TeamData : ScriptableObject
 {
-    public List<AutoBattlerUnitData> TeamUnits = new List<AutoBattlerUnitData>();
+    public List<ABUnitStaticData> TeamUnits = new List<ABUnitStaticData>();
 }

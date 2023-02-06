@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class UnitDetailsPanel : MonoBehaviour
 {
-    public AutoBattlerUnit AutoBattlerUnit { get; protected set; }
+    public ABUnit ABUnit { get; protected set; }
 
-    public void Initialize(AutoBattlerUnit unit)
+    public void Initialize(ABUnit unit)
     {
-        AutoBattlerUnit = unit;
+        ABUnit = unit;
     }
 
     public void OnAbilityTreeBtnClicked()

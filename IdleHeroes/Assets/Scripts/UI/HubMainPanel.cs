@@ -47,7 +47,7 @@ public class HubMainPanel : MonoBehaviour
         m_unitDetailsPanel.SetActive(true);
     }
 
-    public void OnUnitClicked(AutoBattlerUnit unit)
+    public void OnUnitClicked(ABUnit unit)
     {
         CloseEveryPanel();
         m_unitDetailsPanel.gameObject.SetActive(true);

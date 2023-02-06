@@ -7,9 +7,9 @@ public class LocationData : ScriptableObject
     public string LocationName;
     public Sprite LocationSprite;
 
-    public List<AutoBattlerUnitData> EnemiesList = new List<AutoBattlerUnitData>();
+    public List<ABUnitStaticData> EnemiesList = new List<ABUnitStaticData>();
 
-    public AutoBattlerUnitData GenerateEnemyData()
+    public ABUnitStaticData GenerateEnemyData()
     {
         if (EnemiesList.Count == 0) return null;
 

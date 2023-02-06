@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class UnitPanelButton : MonoBehaviour
 {
-    public AutoBattlerUnit AutoBattlerUnit { get; protected set; }
+    public ABUnit ABUnit { get; protected set; }
     private TeamListView m_listView;
 
-    public void Initialize(AutoBattlerUnit unit, TeamListView listView)
+    public void Initialize(ABUnit unit, TeamListView listView)
     {
         m_listView = listView;
-        AutoBattlerUnit = unit;
+        ABUnit = unit;
     }
 
     public void OnClicked()
     {
-        m_listView.OnUnitPanelClicked(AutoBattlerUnit);
+        m_listView.OnUnitPanelClicked(ABUnit);
     }
 }

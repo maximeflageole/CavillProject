@@ -260,8 +260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitPrefab: {fileID: 6389970608305681386, guid: c8a7df2623b9b8f41b53b45068acb8d0, type: 3}
   <IsPlayerTeam>k__BackingField: 1
-  <AutoBattlerUnits>k__BackingField: []
-  <AutoBattlerBattleInstances>k__BackingField: []
+  <ABUnits>k__BackingField: []
+  <ABBattleInstances>k__BackingField: []
 --- !u!1 &1748615011
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,12 +528,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815924357655434533, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000017187635
+      value: -0.00032351946
       objectReference: {fileID: 0}
     - target: {fileID: 1867908239232745751, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: cfab3a62682b94849b80fc78972b00f7, type: 3}
+      objectReference: {fileID: 21300000, guid: 8c6d095be9a61fc4faa43d86a25531e5, type: 3}
     - target: {fileID: 2036848087045014945, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_Name
       value: MainCanvas

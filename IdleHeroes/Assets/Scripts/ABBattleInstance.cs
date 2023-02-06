@@ -5,9 +5,9 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AutoBattlerBattleInstance: MonoBehaviour
+public class ABBattleInstance: MonoBehaviour
 {
-    protected AutoBattlerTeam m_team;
+    protected ABTeam m_team;
     public bool IsInPlayerTeam { get; protected set; }
     protected CancellationTokenSource m_cancellationToken;
 
@@ -15,7 +15,7 @@ public class AutoBattlerBattleInstance: MonoBehaviour
     protected Container m_healthContainer;
     [SerializeField]
     protected Image m_healthBar;
-    public AutoBattlerUnit m_unitInstance;
+    public ABUnit m_unitInstance;
 
     [field: SerializeField]
     public List<float> CurrentAbilitiesTimers { get; protected set; } = new List<float>();
@@ -27,17 +27,17 @@ public class AutoBattlerBattleInstance: MonoBehaviour
     protected MMF_Player m_attackEffect;
 
     //Actions
-    public System.Action<AutoBattlerBattleInstance> OnUnitDeath;
+    public System.Action<ABBattleInstance> OnUnitDeath;
 
     private void Start()
     {
         Debug.Log(gameObject.name);
-        m_healthContainer = new Container(m_unitInstance.UnitData.UnitStats.BaseHealth);
+        m_healthContainer = new Container(m_unitInstance.UnitDynamicData.CurrentStats.MaxHealth);
         m_healthContainer.OnEmptyCallback += OnHealthEmptied;
 
-        for (int i = 0; i < m_unitInstance.UnitData.UnitAbilities.Count; i++)
+        for (int i = 0; i < m_unitInstance.UnitStaticData.UnitAbilities.Count; i++)
         {
-            var ability = m_unitInstance.UnitData.UnitAbilities[i];
+            var ability = m_unitInstance.UnitStaticData.UnitAbilities[i];
             m_abilitiesUI[i].EquipAbility(ability.Sprite);
             CurrentAbilitiesTimers.Add(0);
         }
@@ -51,7 +51,7 @@ public class AutoBattlerBattleInstance: MonoBehaviour
         UpdateAbilitiesUI();
     }
 
-    public void RegisterTeam(AutoBattlerTeam team, bool isPlayerTeam)
+    public void RegisterTeam(ABTeam team, bool isPlayerTeam)
     {
         IsInPlayerTeam = isPlayerTeam;
         m_team = team;
@@ -66,9 +66,9 @@ public class AutoBattlerBattleInstance: MonoBehaviour
     protected void UpdateAbilitiesUI()
     {
         var i = 0;
-        foreach (var ability in m_unitInstance.UnitData.UnitAbilities)
+        foreach (var ability in m_unitInstance.UnitStaticData.UnitAbilities)
         {
-            m_abilitiesUI[i].UpdateImageFillAmount(CurrentAbilitiesTimers[i] / m_unitInstance.UnitData.UnitAbilities[i].Cooldown);
+            m_abilitiesUI[i].UpdateImageFillAmount(CurrentAbilitiesTimers[i] / m_unitInstance.UnitStaticData.UnitAbilities[i].Cooldown);
             i++;
         }
     }
@@ -76,7 +76,7 @@ public class AutoBattlerBattleInstance: MonoBehaviour
     public void UpdateAbilitiesTimer()
     {
         var i = 0;
-        foreach (var ability in m_unitInstance.UnitData.UnitAbilities)
+        foreach (var ability in m_unitInstance.UnitStaticData.UnitAbilities)
         {
             CurrentAbilitiesTimers[i] += Time.deltaTime;
             if (CurrentAbilitiesTimers[i] > ability.Cooldown)
@@ -90,7 +90,7 @@ public class AutoBattlerBattleInstance: MonoBehaviour
 
     private void ExecuteAbility(int index)
     {
-        BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitData.UnitAbilities[index].AbilityData);
+        BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.UnitAbilities[index].AbilityData);
     }
 
     public async void BeginAbility()
@@ -113,7 +113,7 @@ public class AutoBattlerBattleInstance: MonoBehaviour
         BattleManager.Instance.OnAbilityAnimationOver();
     }
 
-    public void ExecuteEffect(AutoBattlerBattleInstance target, EEffectType effectType)
+    public void ExecuteEffect(ABBattleInstance target, EEffectType effectType)
     {
         switch (effectType)
         {
@@ -130,14 +130,14 @@ public class AutoBattlerBattleInstance: MonoBehaviour
         }
     }
 
-    protected void DamageUnit(AutoBattlerBattleInstance target)
+    protected void DamageUnit(ABBattleInstance target)
     {
-        target.ReceiveDamage(m_unitInstance.UnitData.BaseDamage);
+        target.ReceiveDamage(m_unitInstance.UnitStaticData.BaseDamage);
     }
 
-    protected void HealUnit(AutoBattlerBattleInstance target)
+    protected void HealUnit(ABBattleInstance target)
     {
-        target.ReceiveHealing(m_unitInstance.UnitData.BaseDamage);
+        target.ReceiveHealing(m_unitInstance.UnitStaticData.BaseDamage);
     }
 
     public void ReceiveDamage(float damage)

@@ -10,13 +10,13 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private MMF_Player m_timePlayer;
-    private Queue<AutoBattlerAbility> ActionQueue = new Queue<AutoBattlerAbility>();
+    private Queue<ABAbility> ActionQueue = new Queue<ABAbility>();
     public bool AbilityInProgress { get; private set; }
-    private AutoBattlerAbility CurrentAction;
+    private ABAbility CurrentAction;
     [field:SerializeField]
-    public AutoBattlerTeam PlayerTeam { get; protected set; }
+    public ABTeam PlayerTeam { get; protected set; }
     [field:SerializeField]
-    public AutoBattlerTeam EnemyTeam { get; protected set; }
+    public ABTeam EnemyTeam { get; protected set; }
 
     //UIs
     [SerializeField]
@@ -49,12 +49,12 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene("BattleScene", LoadSceneMode.Single);
     }
 
-    public void QueueAbility(AutoBattlerBattleInstance origin, AbilityData abilityData)
+    public void QueueAbility(ABBattleInstance origin, AbilityData abilityData)
     {
-        ActionQueue.Enqueue(new AutoBattlerAbility(origin, abilityData));
+        ActionQueue.Enqueue(new ABAbility(origin, abilityData));
     }
 
-    public bool TryBeginAbility(AutoBattlerAbility ability)
+    public bool TryBeginAbility(ABAbility ability)
     {
         if (ability.Origin == null) return false;
 
@@ -80,14 +80,14 @@ public class BattleManager : MonoBehaviour
 
     public void VerifyBattleEnding()
     {
-        if (PlayerTeam.AutoBattlerUnits.Count == 0)
+        if (PlayerTeam.ABUnits.Count == 0)
         {
             m_battleResultUI.enabled = true;
             m_battleResultText.text= "Game lost!";
             Debug.Log("game lost");
             return;
         }
-        if (EnemyTeam.AutoBattlerUnits.Count == 0)
+        if (EnemyTeam.ABUnits.Count == 0)
         {
             m_battleResultUI.enabled = true;
             m_battleResultText.text = "Game won!";
@@ -95,7 +95,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void ExecuteAbility(AbilityData abilityData, AutoBattlerBattleInstance unit)
+    private void ExecuteAbility(AbilityData abilityData, ABBattleInstance unit)
     {
         foreach (var effect in abilityData.Effects.actionEffects)
         {
@@ -107,7 +107,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private AutoBattlerBattleInstance GetTarget(AutoBattlerBattleInstance unit, SActionEffect effect)
+    private ABBattleInstance GetTarget(ABBattleInstance unit, SActionEffect effect)
     {
         foreach (var targetType in effect.TargetTypes)
         {
@@ -128,7 +128,7 @@ public class BattleManager : MonoBehaviour
         return null;
     }
 
-    private AutoBattlerBattleInstance GetUnitAtIndex(AutoBattlerBattleInstance unit, bool enemyTeam, int index)
+    private ABBattleInstance GetUnitAtIndex(ABBattleInstance unit, bool enemyTeam, int index)
     {
         var targetedTeam = EnemyTeam;
         if ((unit.IsInPlayerTeam && !enemyTeam) || (!unit.IsInPlayerTeam && enemyTeam))
