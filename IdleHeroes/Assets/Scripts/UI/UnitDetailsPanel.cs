@@ -33,5 +33,51 @@ public class UnitDetailsPanel : MonoBehaviour
         m_characterImage.sprite = unit.UnitStaticData.UnitSprite;
         m_characterName.text = unit.UnitStaticData.UnitName;
         m_levelText.text = "Lvl. " + unit.UnitDynamicData.Level.ToString();
+
+        var i = 0;
+        foreach (var equipmentSlot in unit.UnitDynamicData.m_equipmentSlots)
+        {
+            if (!equipmentSlot.IsUnlocked)
+            {
+                m_equipmentImages[i].sprite = m_lockedSprite;
+                m_equipmentLevelUnlockTexts[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                m_equipmentImages[i].sprite = null;
+                m_equipmentLevelUnlockTexts[i].gameObject.SetActive(false);
+            }
+            i++;
+        }
+
+        i = 0;
+        foreach (var abilitySlot in unit.UnitDynamicData.m_abilitySlots)
+        {
+            if (!abilitySlot.IsUnlocked)
+            {
+                m_abilityImages[i].sprite = m_lockedSprite;
+                m_abilityLevelUnlockTexts[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                m_abilityImages[i].sprite = null;
+                m_abilityLevelUnlockTexts[i].gameObject.SetActive(false);
+            }
+            i++;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isActiveAndEnabled && ABUnit != null)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        ABUnit.LevelUp();
+        Initialize(ABUnit);
     }
 }

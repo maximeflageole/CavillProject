@@ -44,4 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f8720806339b488e6a2eca14d0450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UnitData>k__BackingField: {fileID: 11400000, guid: 0c03f1a7b0c6ac643bc66a8b0bf87316, type: 2}
+  <UnitStaticData>k__BackingField: {fileID: 11400000, guid: 82a414f37c80d1d4c8353140d1e506e3, type: 2}
+  <UnitDynamicData>k__BackingField:
+    CharacterName: 
+    Level: 0
+    CurrentStats:
+      MaxHealth: 0
+      MaxMana: 0
+      BattleBeginMana: 0
+      Constitution:
+        PrimaryStatistic: 0
+        Value: 0
+      Strength:
+        PrimaryStatistic: 0
+        Value: 0
+      AttackSpeed:
+        PrimaryStatistic: 0
+        Value: 0
+      Precision:
+        PrimaryStatistic: 0
+        Value: 0
+      AbilityPower:
+        PrimaryStatistic: 0
+        Value: 0
+      ManaManagement:
+        PrimaryStatistic: 0
+        Value: 0
+    UnspentAbilityPoints: 0

@@ -218,9 +218,19 @@ MonoBehaviour:
   PlayerTeam: {fileID: 1742083799}
   DefaultTeamData: {fileID: 11400000, guid: e71bec65282c2734f8c3d28ccbec92a1, type: 2}
   <HubMainPanel>k__BackingField: {fileID: 2036848087435764915}
+--- !u!1 &187593481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951138453694800, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+  m_PrefabInstance: {fileID: 2036848087435764914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &415916311 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2036848087045014949, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+  m_PrefabInstance: {fileID: 2036848087435764914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &594487079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8404198903862408520, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
   m_PrefabInstance: {fileID: 2036848087435764914}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1742083797
@@ -457,6 +467,11 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1891308124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2854495850844344948, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+  m_PrefabInstance: {fileID: 2036848087435764914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2036848087435764914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -488,6 +503,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1074908269102589226, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_abilityLevelUnlockTexts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074908269102589226, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_abilityLevelUnlockTexts.Array.data[0]
+      value: 
+      objectReference: {fileID: 594487079}
+    - target: {fileID: 1074908269102589226, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_abilityLevelUnlockTexts.Array.data[1]
+      value: 
+      objectReference: {fileID: 1891308124}
+    - target: {fileID: 1074908269102589226, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_abilityLevelUnlockTexts.Array.data[2]
+      value: 
+      objectReference: {fileID: 187593481}
     - target: {fileID: 1084009676879650066, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -904,6 +935,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4499958312359985374, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4899475111745131209, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_text
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5284573281818863732, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_SizeDelta.y
       value: 74
@@ -1096,6 +1135,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -299
       objectReference: {fileID: 0}
+    - target: {fileID: 7013238086305721782, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7337368926917581199, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1123,6 +1166,10 @@ PrefabInstance:
     - target: {fileID: 7414823367429138681, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404198903862408520, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ceec60cb4084e4bbd55ad0c48ca0cb, type: 3}

@@ -16,6 +16,11 @@ public class ABUnit : MonoBehaviour
     {
         UnitStaticData = data;
     }
+
+    public void LevelUp()
+    {
+        UnitDynamicData.LevelUp();
+    }
 }
 
 public enum EPrimaryStatistic

@@ -30,7 +30,9 @@ public class ABUnitDynamicData
 
     public void LevelUp()
     {
-        var levelRewards = GameSettings._Instance.LevelUpsSettings.LevelUpRewards[Level];
+        if (Level > GameSettings._Instance.LevelUpsSettings.LevelUpRewards.Count) return;
+
+        var levelRewards = GameSettings._Instance.LevelUpsSettings.LevelUpRewards[Level-1];
         foreach (var reward in levelRewards.LevelRewardsList)
         {
             switch (reward)
@@ -50,25 +52,35 @@ public class ABUnitDynamicData
                 case ELevelUpsRewardType.Count:
                     break;
             }
-            Level++;
         }
+        Level++;
     }
 
     protected void UnlockEquipmentSlot()
     {
+        var i = 0;
         foreach (var equipmentSlot in m_equipmentSlots)
         {
-            if (!equipmentSlot.IsUnlocked) equipmentSlot.IsUnlocked = true;
-            return;
+            if (!equipmentSlot.IsUnlocked)
+            {
+                equipmentSlot.IsUnlocked = true;
+                return;
+            }
+            i++;
         }
     }
 
     protected void UnlockAbilitySlot()
     {
+        var i = 0;
         foreach (var abilitySlot in m_abilitySlots)
         {
-            if (!abilitySlot.IsUnlocked) abilitySlot.IsUnlocked = true;
-            return;
+            if (!abilitySlot.IsUnlocked)
+            {
+                abilitySlot.IsUnlocked = true;
+                return;
+            }
+            i++;
         }
     }
 
