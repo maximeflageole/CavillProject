@@ -18,22 +18,46 @@ MonoBehaviour:
     MaxHealth: 100
     MaxMana: 60
     BattleBeginMana: 10
-    Constitution: 4
-    Strength: 4
-    AttackSpeed: 5
-    Precision: 3
-    AbilityPower: 3
-    ManaManagement: 3
+    Constitution:
+      PrimaryStatistic: 0
+      Value: 4
+    Strength:
+      PrimaryStatistic: 1
+      Value: 5
+    AttackSpeed:
+      PrimaryStatistic: 2
+      Value: 4
+    Precision:
+      PrimaryStatistic: 3
+      Value: 4
+    AbilityPower:
+      PrimaryStatistic: 4
+      Value: 3
+    ManaManagement:
+      PrimaryStatistic: 5
+      Value: 4
   UnitPerLevelGrowth:
     MaxHealth: 7
     MaxMana: 3
     BattleBeginMana: 2
-    Constitution: 0.3
-    Strength: 0.4
-    AttackSpeed: 0.3
-    Precision: 0.4
-    AbilityPower: 0.3
-    ManaManagement: 0.2
+    Constitution:
+      PrimaryStatistic: 0
+      Value: 0
+    Strength:
+      PrimaryStatistic: 0
+      Value: 0
+    AttackSpeed:
+      PrimaryStatistic: 0
+      Value: 0
+    Precision:
+      PrimaryStatistic: 0
+      Value: 0
+    AbilityPower:
+      PrimaryStatistic: 0
+      Value: 0
+    ManaManagement:
+      PrimaryStatistic: 0
+      Value: 0
   <BaseDamage>k__BackingField: 10
   UnitAbilities:
   - AbilityData: {fileID: 11400000, guid: b07e22221d88c5b46b7df6a0cdff8ee2, type: 2}

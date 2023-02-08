@@ -10,7 +10,7 @@ public class HubMainPanel : MonoBehaviour
     [SerializeField]
     protected GameObject m_missionPanel;
     [SerializeField]
-    protected GameObject m_unitDetailsPanel;
+    protected UnitDetailsPanel m_unitDetailsPanel;
     [SerializeField]
     protected GameObject m_abilityTreeUI;
 
@@ -30,7 +30,7 @@ public class HubMainPanel : MonoBehaviour
     private void CloseEveryPanel()
     {
         m_worldPanel.SetActive(false);
-        m_unitDetailsPanel.SetActive(false);
+        m_unitDetailsPanel.gameObject.SetActive(false);
         m_missionPanel.SetActive(false);
         m_abilityTreeUI.SetActive(false);
     }
@@ -44,13 +44,14 @@ public class HubMainPanel : MonoBehaviour
     public void OnExitBtnClicked()
     {
         CloseEveryPanel();
-        m_unitDetailsPanel.SetActive(true);
+        m_unitDetailsPanel.gameObject.SetActive(true);
     }
 
     public void OnUnitClicked(ABUnit unit)
     {
         CloseEveryPanel();
         m_unitDetailsPanel.gameObject.SetActive(true);
+        m_unitDetailsPanel.Initialize(unit);
     }
 
     public void OnWorldBtnClicked()

@@ -657,8 +657,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitPrefab: {fileID: 0}
   <IsPlayerTeam>k__BackingField: 0
-  <AutoBattlerUnits>k__BackingField: []
-  <AutoBattlerBattleInstances>k__BackingField: []
+  <ABUnits>k__BackingField: []
+  <ABBattleInstances>k__BackingField: []
 --- !u!1 &558205319 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2389360390507958519, guid: 79528f77f7ae5df43853eddbfe4d299e, type: 3}
@@ -2739,8 +2739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitPrefab: {fileID: 0}
   <IsPlayerTeam>k__BackingField: 1
-  <AutoBattlerUnits>k__BackingField: []
-  <AutoBattlerBattleInstances>k__BackingField: []
+  <ABUnits>k__BackingField: []
+  <ABBattleInstances>k__BackingField: []
 --- !u!1001 &1907844411
 PrefabInstance:
   m_ObjectHideFlags: 0

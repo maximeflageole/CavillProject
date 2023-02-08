@@ -17,3 +17,23 @@ public class ABUnit : MonoBehaviour
         UnitStaticData = data;
     }
 }
+
+public enum EPrimaryStatistic
+{
+    Constitution,
+    Strength,
+    AttackSpeed,
+    Precision,
+    AbilityPower,
+    ManaManagement,
+    Count
+}
+
+public enum ESecondaryStatistic
+{
+    Armor,
+    Resistance,
+    Health,
+    Mana,
+    Count
+}

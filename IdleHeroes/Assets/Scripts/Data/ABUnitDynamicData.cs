@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class ABUnitDynamicData
@@ -8,26 +6,97 @@ public class ABUnitDynamicData
     public string CharacterName;
     public int Level;
     public ABUnitStats CurrentStats;
+    public int UnspentAbilityPoints = 0;
+    public List<AbilitySlot> m_abilitySlots;
+    public List<EquipmentSlot> m_equipmentSlots;
 
     public ABUnitDynamicData(string characterName, ABUnitStats stats, int level = 1)
     {
         CharacterName = characterName;
         Level = level;
         CurrentStats = stats;
+
+        m_abilitySlots = new List<AbilitySlot>();
+        for (var i = 0; i < 3; i++)
+        {
+            m_abilitySlots.Add(new AbilitySlot(i==0));
+        }
+        m_equipmentSlots = new List<EquipmentSlot>();
+        for (var i = 0; i < 3; i++)
+        {
+            m_equipmentSlots.Add(new EquipmentSlot());
+        }
+    }
+
+    public void LevelUp()
+    {
+        var levelRewards = GameSettings._Instance.LevelUpsSettings.LevelUpRewards[Level];
+        foreach (var reward in levelRewards.LevelRewardsList)
+        {
+            switch (reward)
+            {
+                case ELevelUpsRewardType.AbilityPoint:
+                    UnspentAbilityPoints++;
+                    break;
+                case ELevelUpsRewardType.AbilitySlot:
+                    UnlockAbilitySlot();
+                    break;
+                case ELevelUpsRewardType.EquipmentSlot:
+                    UnlockEquipmentSlot();
+                    break;
+                case ELevelUpsRewardType.StatUpgrade:
+                    //TODO
+                    break;
+                case ELevelUpsRewardType.Count:
+                    break;
+            }
+            Level++;
+        }
+    }
+
+    protected void UnlockEquipmentSlot()
+    {
+        foreach (var equipmentSlot in m_equipmentSlots)
+        {
+            if (!equipmentSlot.IsUnlocked) equipmentSlot.IsUnlocked = true;
+            return;
+        }
+    }
+
+    protected void UnlockAbilitySlot()
+    {
+        foreach (var abilitySlot in m_abilitySlots)
+        {
+            if (!abilitySlot.IsUnlocked) abilitySlot.IsUnlocked = true;
+            return;
+        }
+    }
+
+    public List<StatTuple> GetCurrentStatsTuples()
+    {
+        var returnValue = new List<StatTuple>();
+        returnValue.Add(CurrentStats.Constitution);
+        returnValue.Add(CurrentStats.Strength);
+        returnValue.Add(CurrentStats.AttackSpeed);
+        returnValue.Add(CurrentStats.Precision);
+        returnValue.Add(CurrentStats.AbilityPower);
+        returnValue.Add(CurrentStats.ManaManagement);
+
+        return returnValue;
     }
 }
 
-[System.Serializable]
+    [System.Serializable]
 public class ABUnitStats
 {
     public float MaxHealth;
     public float MaxMana;
     public float BattleBeginMana;
 
-    public float Constitution;
-    public float Strength;
-    public float AttackSpeed;
-    public float Precision;
-    public float AbilityPower;
-    public float ManaManagement;
+    public StatTuple Constitution;
+    public StatTuple Strength;
+    public StatTuple AttackSpeed;
+    public StatTuple Precision;
+    public StatTuple AbilityPower;
+    public StatTuple ManaManagement;
 }
