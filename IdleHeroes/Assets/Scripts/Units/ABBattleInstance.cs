@@ -17,6 +17,7 @@ public class ABBattleInstance: MonoBehaviour
     protected Image m_healthBar;
     public ABUnit m_unitInstance;
 
+    public float AutoAttackTimer { get; protected set; }
     [field: SerializeField]
     public List<float> CurrentAbilitiesTimers { get; protected set; } = new List<float>();
     [SerializeField]
@@ -35,6 +36,8 @@ public class ABBattleInstance: MonoBehaviour
         m_healthContainer = new Container(m_unitInstance.UnitDynamicData.CurrentStats.MaxHealth);
         m_healthContainer.OnEmptyCallback += OnHealthEmptied;
 
+        AutoAttackTimer = 0;
+
         for (int i = 0; i < m_unitInstance.UnitStaticData.UnitAbilities.Count; i++)
         {
             var ability = m_unitInstance.UnitStaticData.UnitAbilities[i];
@@ -47,8 +50,6 @@ public class ABBattleInstance: MonoBehaviour
     {
         UpdateHealth();
         if (BattleManager.Instance.AbilityInProgress) return;
-        UpdateAbilitiesTimer();
-        UpdateAbilitiesUI();
     }
 
     public void RegisterTeam(ABTeam team, bool isPlayerTeam)
@@ -88,8 +89,25 @@ public class ABBattleInstance: MonoBehaviour
         }
     }
 
+    public void UpdateAutoAttackTimer()
+    {
+        AutoAttackTimer += Time.deltaTime;
+        if (AutoAttackTimer > m_unitInstance.GetAttackTime())
+        {
+            AutoAttackTimer %= m_unitInstance.GetAttackTime();
+            ExecuteAutoAttack();
+        }
+    }
+
+    private void ExecuteAutoAttack()
+    {
+        //TODO MF: Auto attack should not be an ability, or should have its own slot
+        BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.UnitAbilities[0].AbilityData);
+    }
+
     private void ExecuteAbility(int index)
     {
+        //TODO MF: Auto attack should not be an ability, or should have its own slot
         BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.UnitAbilities[index].AbilityData);
     }
 

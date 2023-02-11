@@ -21,6 +21,11 @@ public class ABUnit : MonoBehaviour
     {
         UnitDynamicData.LevelUp();
     }
+
+    public float GetAttackTime()
+    {
+        return UnitDynamicData.CurrentStats.AttackSpeed.Value;
+    }
 }
 
 public enum EPrimaryStatistic
