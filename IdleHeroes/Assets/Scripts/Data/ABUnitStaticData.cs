@@ -15,6 +15,7 @@ public class ABUnitStaticData : ScriptableObject
     [field: SerializeField]
     public float BaseDamage { get; protected set; } = 10;
 
+    public UnitAbility AutoAttack;
     public List<UnitAbility> UnitAbilities = new List<UnitAbility>();
 }
 

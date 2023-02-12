@@ -42,23 +42,27 @@ MonoBehaviour:
     BattleBeginMana: 2
     Constitution:
       PrimaryStatistic: 0
-      Value: 0
+      Value: 1
     Strength:
-      PrimaryStatistic: 0
-      Value: 0
+      PrimaryStatistic: 1
+      Value: 1
     AttackSpeed:
-      PrimaryStatistic: 0
-      Value: 0
+      PrimaryStatistic: 2
+      Value: 1
     Precision:
-      PrimaryStatistic: 0
-      Value: 0
+      PrimaryStatistic: 3
+      Value: 1
     AbilityPower:
-      PrimaryStatistic: 0
-      Value: 0
+      PrimaryStatistic: 4
+      Value: 1
     ManaManagement:
-      PrimaryStatistic: 0
-      Value: 0
+      PrimaryStatistic: 5
+      Value: 1
   <BaseDamage>k__BackingField: 10
+  AutoAttack:
+    AbilityData: {fileID: 11400000, guid: b07e22221d88c5b46b7df6a0cdff8ee2, type: 2}
+    Cooldown: 0
+    Sprite: {fileID: 21300000, guid: abd0b44fc0e203d439ab1ae8491d7c64, type: 3}
   UnitAbilities:
   - AbilityData: {fileID: 11400000, guid: b07e22221d88c5b46b7df6a0cdff8ee2, type: 2}
     Cooldown: 1

@@ -12,5 +12,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ad26b0c2a1b274e95cb384ab7ea198, type: 3}
   m_Name: AdventurerHero
   m_EditorClassIdentifier: 
-  <BaseHealth>k__BackingField: 100
+  UnitName: 
+  <UnitSprite>k__BackingField: {fileID: 21300000, guid: 047fbb753e6a91b458d32165a025146f, type: 3}
+  UnitBaseStats:
+    MaxHealth: 0
+    MaxMana: 0
+    BattleBeginMana: 0
+    Constitution:
+      PrimaryStatistic: 0
+      Value: 0
+    Strength:
+      PrimaryStatistic: 0
+      Value: 0
+    AttackSpeed:
+      PrimaryStatistic: 0
+      Value: 0
+    Precision:
+      PrimaryStatistic: 0
+      Value: 0
+    AbilityPower:
+      PrimaryStatistic: 0
+      Value: 0
+    ManaManagement:
+      PrimaryStatistic: 0
+      Value: 0
+  UnitPerLevelGrowth:
+    MaxHealth: 0
+    MaxMana: 0
+    BattleBeginMana: 0
+    Constitution:
+      PrimaryStatistic: 0
+      Value: 0
+    Strength:
+      PrimaryStatistic: 0
+      Value: 0
+    AttackSpeed:
+      PrimaryStatistic: 0
+      Value: 0
+    Precision:
+      PrimaryStatistic: 0
+      Value: 0
+    AbilityPower:
+      PrimaryStatistic: 0
+      Value: 0
+    ManaManagement:
+      PrimaryStatistic: 0
+      Value: 0
   <BaseDamage>k__BackingField: 10
+  UnitAbilities: []

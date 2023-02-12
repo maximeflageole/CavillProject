@@ -41,7 +41,7 @@ public class ABBattleInstance: MonoBehaviour
         for (int i = 0; i < m_unitInstance.UnitStaticData.UnitAbilities.Count; i++)
         {
             var ability = m_unitInstance.UnitStaticData.UnitAbilities[i];
-            m_abilitiesUI[i].EquipAbility(ability.Sprite);
+            //m_abilitiesUI[i].EquipAbility(ability.Sprite);
             CurrentAbilitiesTimers.Add(0);
         }
     }
@@ -50,6 +50,7 @@ public class ABBattleInstance: MonoBehaviour
     {
         UpdateHealth();
         if (BattleManager.Instance.AbilityInProgress) return;
+        UpdateAutoAttackTimer();
     }
 
     public void RegisterTeam(ABTeam team, bool isPlayerTeam)
@@ -102,7 +103,7 @@ public class ABBattleInstance: MonoBehaviour
     private void ExecuteAutoAttack()
     {
         //TODO MF: Auto attack should not be an ability, or should have its own slot
-        BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.UnitAbilities[0].AbilityData);
+        BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.AutoAttack.AbilityData);
     }
 
     private void ExecuteAbility(int index)
@@ -113,6 +114,7 @@ public class ABBattleInstance: MonoBehaviour
 
     public async void BeginAbility()
     {
+        Debug.Log("Ability begun ");
         m_cancellationToken = new CancellationTokenSource();
         try
         {
