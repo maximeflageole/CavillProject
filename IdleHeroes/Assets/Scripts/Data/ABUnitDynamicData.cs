@@ -104,6 +104,7 @@ public class ABUnitStats
     public float MaxHealth;
     public float MaxMana;
     public float BattleBeginMana;
+    public float Armor;
 
     public StatTuple Constitution;
     public StatTuple Strength;

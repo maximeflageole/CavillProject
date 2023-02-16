@@ -137,4 +137,20 @@ public class BattleManager : MonoBehaviour
         }
         return targetedTeam.GetUnitAtIndex(index);
     }
+
+    public float CalculateAutoAttackDamage(ABBattleInstance origin, ABBattleInstance targetUnit)
+    {
+#if UNITY_EDITOR
+        Debug.Log("CalculateAutoAttackDamage in progress");
+        Debug.Log(origin.name + " is the origin and has " + origin.GetAABaseDamage() + " base damage");
+        Debug.Log(targetUnit.name + " is the target and has " + CalculateDamageMultiplier(targetUnit) + " damage reduction");
+        Debug.Log("Autoattack damage is " + origin.GetAABaseDamage() * CalculateDamageMultiplier(targetUnit));
+#endif
+        return (origin.GetAABaseDamage() * CalculateDamageMultiplier(targetUnit));
+    }
+
+    protected float CalculateDamageMultiplier(ABBattleInstance targetUnit)
+    {
+        return (50f / (50f + Mathf.Max(0, targetUnit.GetArmor())));
+    }
 }

@@ -102,13 +102,11 @@ public class ABBattleInstance: MonoBehaviour
 
     private void ExecuteAutoAttack()
     {
-        //TODO MF: Auto attack should not be an ability, or should have its own slot
         BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.AutoAttack.AbilityData);
     }
 
     private void ExecuteAbility(int index)
     {
-        //TODO MF: Auto attack should not be an ability, or should have its own slot
         BattleManager.Instance.QueueAbility(this, m_unitInstance.UnitStaticData.UnitAbilities[index].AbilityData);
     }
 
@@ -135,10 +133,11 @@ public class ABBattleInstance: MonoBehaviour
 
     public void ExecuteEffect(ABBattleInstance target, EEffectType effectType)
     {
+        //TODO MF: This should be executed in BattleManager, never here
         switch (effectType)
         {
             case EEffectType.Damage:
-                DamageUnit(target);
+                DamageUnit(target, BattleManager.Instance.CalculateAutoAttackDamage(this, target));
                 break;
             case EEffectType.Heal:
                 HealUnit(target);
@@ -150,9 +149,9 @@ public class ABBattleInstance: MonoBehaviour
         }
     }
 
-    protected void DamageUnit(ABBattleInstance target)
+    protected void DamageUnit(ABBattleInstance target, float damageAmount)
     {
-        target.ReceiveDamage(m_unitInstance.UnitStaticData.BaseDamage);
+        target.ReceiveDamage(damageAmount);
     }
 
     protected void HealUnit(ABBattleInstance target)
@@ -180,5 +179,22 @@ public class ABBattleInstance: MonoBehaviour
         OnUnitDeath?.Invoke(this);
         m_cancellationToken?.Cancel();
         Destroy(gameObject);
+    }
+
+    public float GetAABaseDamage()
+    {
+        //TODO MF
+        return m_unitInstance.UnitDynamicData.CurrentStats.Strength.Value * GetWeaponModifier();
+    }
+
+    public float GetArmor()
+    {
+        return m_unitInstance.UnitDynamicData.CurrentStats.Armor;
+    }
+
+    protected float GetWeaponModifier()
+    {
+        //TODO MF
+        return 1f;
     }
 }

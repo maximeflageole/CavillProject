@@ -18,6 +18,7 @@ MonoBehaviour:
     MaxHealth: 100
     MaxMana: 60
     BattleBeginMana: 10
+    Armor: 50
     Constitution:
       PrimaryStatistic: 0
       Value: 4
@@ -40,6 +41,7 @@ MonoBehaviour:
     MaxHealth: 7
     MaxMana: 3
     BattleBeginMana: 2
+    Armor: 0
     Constitution:
       PrimaryStatistic: 0
       Value: 1
