@@ -14,7 +14,7 @@ public class ABUnitDynamicData
     {
         CharacterName = characterName;
         Level = level;
-        CurrentStats = stats;
+        CurrentStats = (ABUnitStats)stats.Clone();
 
         m_abilitySlots = new List<AbilitySlot>();
         for (var i = 0; i < 3; i++)
@@ -101,6 +101,10 @@ public class ABUnitDynamicData
     [System.Serializable]
 public class ABUnitStats
 {
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
     public float MaxHealth;
     public float MaxMana;
     public float BattleBeginMana;
