@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4466362001454646598}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainPanel, Assembly-CSharp
         m_MethodName: OnExitBtnClicked
         m_Mode: 1
@@ -5189,8 +5189,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Stats
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6cdb3edfb890e7b4daddd752d9965c22, type: 2}
-  m_sharedMaterial: {fileID: 5618644325099872008, guid: 6cdb3edfb890e7b4daddd752d9965c22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5800,7 +5800,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4466362001454646598}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainPanel, Assembly-CSharp
         m_MethodName: OnAbilityTreeBtnClicked
         m_Mode: 1
@@ -9868,8 +9868,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Equipped abilities
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6cdb3edfb890e7b4daddd752d9965c22, type: 2}
-  m_sharedMaterial: {fileID: 5618644325099872008, guid: 6cdb3edfb890e7b4daddd752d9965c22, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9893,7 +9893,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.75
+  m_fontSize: 35.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10894,7 +10894,6 @@ GameObject:
   - component: {fileID: 4083737319812477241}
   - component: {fileID: 6630931340334701384}
   - component: {fileID: 1994637736234691870}
-  - component: {fileID: 4466362001454646598}
   m_Layer: 5
   m_Name: HubMainPanel
   m_TagString: Untagged
@@ -10957,29 +10956,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &4466362001454646598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4563025049831195620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7dcd00f1e850eb409d4448a4a80649e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_teamScrollView: {fileID: 2658666765508194578}
-  m_worldPanel: {fileID: 7679426956935056058}
-  m_missionPanel: {fileID: 5657967264431559441}
-  m_unitDetailsPanel: {fileID: 5929976461946168746}
-  m_abilityTreeUI: {fileID: 1302478602}
-  <TeamListView>k__BackingField: {fileID: 1250103128109787195}
-  <MissionsPanel>k__BackingField: {fileID: 7650419926343460472}
-  m_locationsData:
-  - {fileID: 11400000, guid: f315324e276e0a7448054784317233e6, type: 2}
-  - {fileID: 11400000, guid: 5ca64830b5baae94ba52cbc1e37a2dd4, type: 2}
-  - {fileID: 11400000, guid: 00b35990424585b4081c226c37086836, type: 2}
 --- !u!1 &4678090908581106079
 GameObject:
   m_ObjectHideFlags: 0
@@ -11996,7 +11972,6 @@ GameObject:
   - component: {fileID: 3228385677624649380}
   - component: {fileID: 8402668708715471246}
   - component: {fileID: 2050990998816351198}
-  - component: {fileID: 8842969321401618496}
   m_Layer: 5
   m_Name: StatsPanel
   m_TagString: Untagged
@@ -12069,32 +12044,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8842969321401618496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5376962708588454845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bce6b594338d64cbf6f840af8af6d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_statNameTexts:
-  - {fileID: 6581166739914236542}
-  - {fileID: 965321743605391697}
-  - {fileID: 8932798636186166418}
-  - {fileID: 3330671089379948928}
-  - {fileID: 2943668660556698424}
-  - {fileID: 4702427042708494599}
-  m_statAmountTexts:
-  - {fileID: 8493116038726010441}
-  - {fileID: 2933863647271767999}
-  - {fileID: 4837949142790501985}
-  - {fileID: 1777044638552206940}
-  - {fileID: 531009934903486285}
-  - {fileID: 7669662361408316823}
 --- !u!1 &5386560458098184898
 GameObject:
   m_ObjectHideFlags: 0
@@ -13738,7 +13687,6 @@ GameObject:
   - component: {fileID: 632876304554565413}
   - component: {fileID: 784643223032042345}
   - component: {fileID: 5893995952325456887}
-  - component: {fileID: 7650419926343460472}
   m_Layer: 5
   m_Name: MissionsPanel
   m_TagString: Untagged
@@ -13844,19 +13792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &7650419926343460472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6754706012560447502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0b6bf86b68e934fa9639970ecbbaa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_missionBtnPrefab: {fileID: 2849148415328966304, guid: 85fb082abad61a548a62b6210e0f5f23, type: 3}
 --- !u!1 &6762819048609459200
 GameObject:
   m_ObjectHideFlags: 0
@@ -14021,7 +13956,6 @@ GameObject:
   - component: {fileID: 5013105452944184741}
   - component: {fileID: 1922416232101353467}
   - component: {fileID: 7225221674065691935}
-  - component: {fileID: 1250103128109787195}
   m_Layer: 5
   m_Name: TeamScrollViewContent
   m_TagString: Untagged
@@ -14089,19 +14023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &1250103128109787195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6996165215043821327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4df49cd1bc5e6ea439999f281f0322d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_characterButtonPrefab: {fileID: 8389641025284451405, guid: 787f53e636911d9469a95d939744a29d, type: 3}
 --- !u!1 &7015313246382442077
 GameObject:
   m_ObjectHideFlags: 0
@@ -15593,7 +15514,6 @@ GameObject:
   - component: {fileID: 7679531835459548700}
   - component: {fileID: 3350926132091279872}
   - component: {fileID: 3630593721008528985}
-  - component: {fileID: 5929976461946168746}
   m_Layer: 5
   m_Name: UnitDetailsPanel
   m_TagString: Untagged
@@ -15685,39 +15605,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5929976461946168746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229986312798921950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e62ff4773faa9d4b8f9921b137c73ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_characterImage: {fileID: 4993772811479253399}
-  m_characterName: {fileID: 9180628850179743148}
-  m_levelText: {fileID: 3934834704321371727}
-  m_statsPanel: {fileID: 8842969321401618496}
-  m_lockedSprite: {fileID: 21300000, guid: 5062fc454d7d3494eace617943df47c1, type: 3}
-  m_abilityImages:
-  - {fileID: 7149986471785955718}
-  - {fileID: 2342374193767149583}
-  - {fileID: 6427666299164128936}
-  m_abilityLevelUnlockTexts:
-  - {fileID: 2882553541702317512}
-  - {fileID: 8880079862528774900}
-  - {fileID: 6674955057817840080}
-  m_equipmentImages:
-  - {fileID: 9170771467492845170}
-  - {fileID: 8684677233405240241}
-  - {fileID: 6746587772099050992}
-  m_equipmentLevelUnlockTexts:
-  - {fileID: 4464566612098936118}
-  - {fileID: 4437109359002446595}
-  - {fileID: 8933682771376956263}
 --- !u!1 &8283731971874436571
 GameObject:
   m_ObjectHideFlags: 0
