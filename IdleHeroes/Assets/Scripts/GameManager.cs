@@ -29,10 +29,4 @@ public class GameManager : MonoBehaviour
         PlayerTeam.LoadTeam(DefaultTeamData);
         HubMainPanel.TeamListView.Instantiate(PlayerTeam);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
