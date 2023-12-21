@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        PlayerTeam.LoadTeam(DefaultTeamData);
-        HubMainPanel.TeamListView.Instantiate(PlayerTeam);
+        PlayerTeam?.LoadTeam(DefaultTeamData);
+        HubMainPanel?.TeamListView.Instantiate(PlayerTeam);
     }
 }
