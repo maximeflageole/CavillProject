@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     public HubMainPanel HubMainPanel { get; protected set; }
     [SerializeField]
     private AbilitiesPanel m_abilitiesPanel;
+    [field: SerializeField]
+    public Character m_mainCharacter { get; protected set; }
+    [field: SerializeField]
+    public Character m_enemyCharacter { get; protected set; }
 
     private void Awake()
     {
@@ -31,13 +35,5 @@ public class GameManager : MonoBehaviour
         }
         PlayerTeam?.LoadTeam(DefaultTeamData);
         HubMainPanel?.TeamListView.Instantiate(PlayerTeam);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("Testttt");
-        }
     }
 }

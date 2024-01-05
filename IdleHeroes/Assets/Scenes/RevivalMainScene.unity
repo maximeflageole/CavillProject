@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d9d3a625bf5cd4186466464d691785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isPlayer: 0
   m_feedbacksDictionary:
     InitialList:
     - key: 0
@@ -1021,6 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d9d3a625bf5cd4186466464d691785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isPlayer: 1
   m_feedbacksDictionary:
     InitialList:
     - key: 0
@@ -1299,6 +1301,8 @@ MonoBehaviour:
   DefaultTeamData: {fileID: 0}
   <HubMainPanel>k__BackingField: {fileID: 0}
   m_abilitiesPanel: {fileID: 278473680}
+  <m_mainCharacter>k__BackingField: {fileID: 765399021}
+  <m_enemyCharacter>k__BackingField: {fileID: 758195}
 --- !u!1 &1450222184
 GameObject:
   m_ObjectHideFlags: 0

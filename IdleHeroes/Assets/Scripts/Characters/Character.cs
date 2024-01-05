@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    //Temporary TOREMOVE
+    public bool m_isPlayer;
+
     public SerializableDictionary<EAbilityEffect, MMFeedbacks> m_feedbacksDictionary = new SerializableDictionary<EAbilityEffect, MMFeedbacks>();
 
-    protected Container HealthContainer { get; set; }
     [field:SerializeField]
     protected BaseContainerController HealthContainerController { get; set; }
 
@@ -17,27 +19,28 @@ public class Character : MonoBehaviour
         m_feedbacksDictionary.InstantiateDictionary();
     }
 
-    public void ReceiveHit()
+    public void ReceiveHit(int amount)
     {
         MMFeedbacks value = null;
         if (m_feedbacksDictionary.TryGetValue(EAbilityEffect.Hit, ref value))
         {
             value.PlayFeedbacks();
+            HealthContainerController.Container.RemoveValue(amount);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (m_isPlayer && Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ReceiveHit();
+            PerformDamage();
         }
     }
 
-    public void ReceiveDamage(int amount)
+    public void PerformDamage()
     {
-        HealthContainer.RemoveValue(amount);
+        GameManager._Instance.m_enemyCharacter.ReceiveHit(10);
     }
 }
 
