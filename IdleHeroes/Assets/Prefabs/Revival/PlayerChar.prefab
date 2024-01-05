@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_containerData:
     BaseMinValue: 0
-    BaseMaxValue: 35
-    DefaultValue: 35
+    BaseMaxValue: 150
+    DefaultValue: 150
     RegenerationValue: 2
     CanRegenerate: 1
     RegenerationCooldownAfterDamage: 1.5
