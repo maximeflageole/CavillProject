@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using MRF.Containers;
 using MRF.Dictionary;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public SerializableDictionary<EAbilityEffect, MMFeedbacks> m_feedbacksDictionary = new SerializableDictionary<EAbilityEffect, MMFeedbacks>();
+
+    protected Container HealthContainer { get; set; }
+    [field:SerializeField]
+    protected BaseContainerController HealthContainerController { get; set; }
 
     private void Awake()
     {
@@ -28,6 +33,11 @@ public class Character : MonoBehaviour
         {
             ReceiveHit();
         }
+    }
+
+    public void ReceiveDamage(int amount)
+    {
+        HealthContainer.RemoveValue(amount);
     }
 }
 

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 758193}
   - component: {fileID: 758194}
   - component: {fileID: 758195}
+  - component: {fileID: 758196}
   m_Layer: 0
   m_Name: EnemyChar
   m_TagString: Untagged
@@ -323,6 +324,27 @@ MonoBehaviour:
     InitialList:
     - key: 0
       value: {fileID: 1681853130}
+  <HealthContainerController>k__BackingField: {fileID: 758196}
+--- !u!114 &758196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a93cef3c6d7d5d43a2c6949932cc109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_containerData:
+    BaseMinValue: 0
+    BaseMaxValue: 35
+    DefaultValue: 35
+    RegenerationValue: 1
+    CanRegenerate: 1
+  m_containerUI: {fileID: 0}
+  m_currentValue: 0
 --- !u!1 &31411945
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +721,7 @@ GameObject:
   - component: {fileID: 278473678}
   - component: {fileID: 278473677}
   - component: {fileID: 278473679}
+  - component: {fileID: 278473680}
   m_Layer: 5
   m_Name: AbilitiesPanel
   m_TagString: Untagged
@@ -791,6 +814,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &278473680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278473675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674a13ec27b3d3742a6512fac616f6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &425759176
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +933,7 @@ GameObject:
   - component: {fileID: 765399019}
   - component: {fileID: 765399018}
   - component: {fileID: 765399021}
+  - component: {fileID: 765399022}
   m_Layer: 0
   m_Name: PlayerChar
   m_TagString: Untagged
@@ -989,6 +1025,27 @@ MonoBehaviour:
     InitialList:
     - key: 0
       value: {fileID: 260534565}
+  <HealthContainerController>k__BackingField: {fileID: 765399022}
+--- !u!114 &765399022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765399017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a93cef3c6d7d5d43a2c6949932cc109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_containerData:
+    BaseMinValue: 0
+    BaseMaxValue: 35
+    DefaultValue: 35
+    RegenerationValue: 1
+    CanRegenerate: 1
+  m_containerUI: {fileID: 0}
+  m_currentValue: 0
 --- !u!1 &807541838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1298,7 @@ MonoBehaviour:
   PlayerTeam: {fileID: 0}
   DefaultTeamData: {fileID: 0}
   <HubMainPanel>k__BackingField: {fileID: 0}
+  m_abilitiesPanel: {fileID: 278473680}
 --- !u!1 &1450222184
 GameObject:
   m_ObjectHideFlags: 0

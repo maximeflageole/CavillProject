@@ -16,7 +16,6 @@ namespace MRF.Containers
 
         // Data
         protected Container m_container;
-
         public Container Container { get { return m_container; } }
         
         protected virtual void Awake()

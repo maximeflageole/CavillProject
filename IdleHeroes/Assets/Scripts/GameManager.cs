@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [field:SerializeField]
     public HubMainPanel HubMainPanel { get; protected set; }
+    [SerializeField]
+    private AbilitiesPanel m_abilitiesPanel;
 
     private void Awake()
     {
@@ -22,11 +25,19 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerTeam.ABUnits.Count != 0)
+        if (PlayerTeam?.ABUnits.Count != 0)
         {
             return;
         }
         PlayerTeam?.LoadTeam(DefaultTeamData);
         HubMainPanel?.TeamListView.Instantiate(PlayerTeam);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Testttt");
+        }
     }
 }
