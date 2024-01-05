@@ -9,7 +9,7 @@ namespace MRF.Containers
         [SerializeField]
         protected ContainerValues m_containerData;
         [SerializeField]
-        protected MMProgressBar m_containerUI;
+        protected MMHealthBar m_healthBar;
         // Debug
         [SerializeField]
         protected float m_currentValue;
@@ -40,16 +40,6 @@ namespace MRF.Containers
             OnValueChanged();
         }
 
-        public MMProgressBar GetContainerBar()
-        {
-            return m_containerUI;
-        }
-
-        public void SetContainerUI(MMProgressBar progressBar)
-        {
-            m_containerUI = progressBar;
-        }
-
         protected virtual void Update()
         {
             m_container.OnUpdate();
@@ -57,23 +47,16 @@ namespace MRF.Containers
 
         protected virtual void OnValueChanged()
         {
-            m_containerUI?.UpdateBar01(m_container.GetNormalizedPercentage());
-
             // to show current value in inspector
             m_currentValue = GetCurrentValue();
+            m_healthBar?.UpdateBar(m_container.GetNormalizedPercentage(), 0, 1, true);
         }
 
         protected virtual void OnValueChangedInUpdate()
         {
-            m_containerUI?.SetBar01(m_container.GetNormalizedPercentage());
-
             // to show current value in inspector
             m_currentValue = GetCurrentValue();
-        }
-
-        public void SetActivateContainerUI(bool isActive)
-        {
-            m_containerUI.gameObject.SetActive(isActive);
+            m_healthBar?.UpdateBar(m_container.GetNormalizedPercentage(), 0, 1, true);
         }
 
         public virtual void ForceUpdate()

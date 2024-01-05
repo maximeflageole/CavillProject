@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
         MMFeedbacks value = null;
         if (m_feedbacksDictionary.TryGetValue(EAbilityEffect.Hit, ref value))
         {
-            value.PlayFeedbacks();
+            value?.PlayFeedbacks();
             HealthContainerController.Container.RemoveValue(amount);
         }
     }

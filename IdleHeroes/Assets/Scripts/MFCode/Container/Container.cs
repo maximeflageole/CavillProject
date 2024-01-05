@@ -11,6 +11,7 @@ namespace MRF.Containers
         public float DefaultValue;
         public float RegenerationValue;
         public bool CanRegenerate;
+        public float RegenerationCooldownAfterDamage;
     };
 
     [Serializable]
@@ -19,6 +20,7 @@ namespace MRF.Containers
         private ContainerValues m_containerValues;
         [field:SerializeField]
         public float CurrentValue { get; private set; }
+        public float CurrentCooldown { get; private set; } = 0;
 
         public event Action OnValueChangedCallback;
         public event Action OnValueChangedInUpdateCallback;
@@ -28,7 +30,7 @@ namespace MRF.Containers
         private bool m_isFirstEmpty;
         private bool m_isFirstFull;
 
-        public Container(float maxHealth, bool regen = false, float regenValue = 0)
+        public Container(float maxHealth, bool regen = false, float regenValue = 0, float regenCooldown = 0)
         {
             m_containerValues = new ContainerValues();
             m_containerValues.BaseMaxValue = maxHealth;
@@ -36,6 +38,7 @@ namespace MRF.Containers
             m_containerValues.BaseMinValue = 0;
             m_containerValues.CanRegenerate = regen;
             m_containerValues.RegenerationValue = regenValue;
+            m_containerValues.RegenerationCooldownAfterDamage = regenCooldown;
 
             Init();
         }
@@ -52,6 +55,7 @@ namespace MRF.Containers
 
             m_isFirstEmpty = true;
             m_isFirstFull = true;
+            CurrentCooldown = 0;
 
             OnValueChangedCallback?.Invoke();
         }
@@ -61,6 +65,7 @@ namespace MRF.Containers
             CurrentValue = Mathf.Clamp(m_containerValues.DefaultValue, m_containerValues.BaseMinValue, m_containerValues.BaseMaxValue);
             m_isFirstEmpty = true;
             m_isFirstFull = true;
+            CurrentCooldown = 0;
 
             OnValueChangedCallback?.Invoke();
         }
@@ -68,6 +73,7 @@ namespace MRF.Containers
         public void OnUpdate()
         {
             TryUpdateRegeneration();
+            CurrentCooldown -= Time.deltaTime;
         }
 
         private void TryUpdateRegeneration()
@@ -80,7 +86,7 @@ namespace MRF.Containers
 
         private bool CanRegenerate()
         {
-            return m_containerValues.CanRegenerate && (IsInContainer());
+            return m_containerValues.CanRegenerate && IsInContainer() && CurrentCooldown <= 0;
         }
 
         private bool IsInContainer()
@@ -107,9 +113,14 @@ namespace MRF.Containers
             }
         }
 
-        public void RemoveValue(float delta)
+        public void RemoveValue(float delta, bool affectsCooldown = true)
         {
             CurrentValue = Mathf.Clamp(CurrentValue - delta, m_containerValues.BaseMinValue, m_containerValues.BaseMaxValue);
+
+            if (affectsCooldown)
+            {
+                CurrentCooldown = m_containerValues.RegenerationCooldownAfterDamage;
+            }
 
             OnValueChangedCallback?.Invoke();
 
