@@ -24,6 +24,8 @@ public class Character : MonoBehaviour
         MMFeedbacks value = null;
         if (m_feedbacksDictionary.TryGetValue(EAbilityEffect.Hit, ref value))
         {
+            //TODO This should be put in a sequence instead, stop and play causes bugs because delayed feedbacks are NOT stopped when Stop is called
+            value?.StopFeedbacks();
             value?.PlayFeedbacks();
             HealthContainerController.Container.RemoveValue(amount);
         }
