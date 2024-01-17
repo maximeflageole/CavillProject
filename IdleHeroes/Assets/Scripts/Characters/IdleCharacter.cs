@@ -1,11 +1,14 @@
+using Assets.PixelHeroes.Scripts;
 using MoreMountains.Feedbacks;
 using MRF.Containers;
 using MRF.Dictionary;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class IdleCharacter : MonoBehaviour
 {
+    [SerializeField]
+    private Character m_character;
     //Temporary TOREMOVE
     public bool m_isPlayer;
 
@@ -17,6 +20,11 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         m_feedbacksDictionary.InstantiateDictionary();
+    }
+
+    private void Start()
+    {
+        m_character.SetState(Assets.PixelHeroes.Scripts.AnimationState.Idle);
     }
 
     public void ReceiveHit(int amount)

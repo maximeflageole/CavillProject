@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AbilitiesPanel m_abilitiesPanel;
     [field: SerializeField]
-    public Character m_mainCharacter { get; protected set; }
+    public IdleCharacter m_mainCharacter { get; protected set; }
     [field: SerializeField]
-    public Character m_enemyCharacter { get; protected set; }
+    public IdleCharacter m_enemyCharacter { get; protected set; }
 
     private void Awake()
     {
